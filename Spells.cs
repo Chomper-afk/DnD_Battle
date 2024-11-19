@@ -60,10 +60,10 @@ namespace DnD_Battle {
                         if ((Dice.Rolling(20,1) + P1.SpellcastingModifier)> enemy.AC) {
                             temp = base.Attack(enemy);
                             enemy.CurrentHP -= P1.SpellcastingModifier;
-                            Settings.log += "\r\n" + P1.Name + " hits " + enemy.Name + "for a total of " + (temp + P1.SpellcastingModifier) + "DMG";
+                            Settings.Log += "\r\n" + P1.Name + " hits " + enemy.Name + "for a total of " + (temp + P1.SpellcastingModifier) + "DMG";
                         }
                         else {
-                            Settings.log += "\r\n" + P1.Name + " missed " + (i + 1) + ". attack with " + Name;
+                            Settings.Log += "\r\n" + P1.Name + " missed " + (i + 1) + ". attack with " + Name;
                             Console.WriteLine("you miss");
                         }
 
@@ -72,11 +72,11 @@ namespace DnD_Battle {
                 }
                 else {
                     Console.WriteLine("Missing actions");
-                    Settings.log += "\r\nYou are missing Action/Bonus Action";
+                    Settings.Log += "\r\nYou are missing Action/Bonus Action";
                 }
             }
             else {
-                Settings.log += "\r\n" + P1.Name + " doesnt have enough spell slots of level " + SpellSlot;
+                Settings.Log += "\r\n" + P1.Name + " doesnt have enough spell slots of level " + SpellSlot;
                 Console.WriteLine("Not enough Spell Slots");
             }
         }

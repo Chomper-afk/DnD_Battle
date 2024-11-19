@@ -26,184 +26,214 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
-            this.roll = new System.Windows.Forms.Button();
-            this.output = new System.Windows.Forms.TextBox();
-            this.complex = new System.Windows.Forms.Button();
-            this.attack = new System.Windows.Forms.TextBox();
-            this.spell1 = new System.Windows.Forms.Button();
-            this.spell2 = new System.Windows.Forms.Button();
-            this.spell3 = new System.Windows.Forms.Button();
-            this.spell4 = new System.Windows.Forms.Button();
-            this.spell_selected = new System.Windows.Forms.TextBox();
-            this.enemy_name = new System.Windows.Forms.TextBox();
-            this.enemy_HP = new System.Windows.Forms.TextBox();
-            this.Next_Turn = new System.Windows.Forms.Button();
-            this.Player_Name = new System.Windows.Forms.TextBox();
-            this.Player_HP = new System.Windows.Forms.TextBox();
-            this.SuspendLayout();
+        private void InitializeComponent() {
+            roll = new Button();
+            output = new TextBox();
+            complex = new Button();
+            attack = new TextBox();
+            spell1 = new Button();
+            spell2 = new Button();
+            spell3 = new Button();
+            spell4 = new Button();
+            spell_selected = new TextBox();
+            enemy_name = new TextBox();
+            enemy_HP = new TextBox();
+            Next_Turn = new Button();
+            Player_Name = new TextBox();
+            Player_HP = new TextBox();
+            SuspendLayout();
             // 
             // roll
             // 
-            this.roll.Enabled = false;
-            this.roll.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.roll.Location = new System.Drawing.Point(12, 211);
-            this.roll.Name = "roll";
-            this.roll.Size = new System.Drawing.Size(191, 70);
-            this.roll.TabIndex = 0;
-            this.roll.Text = "attack";
-            this.roll.UseVisualStyleBackColor = true;
-            this.roll.Click += new System.EventHandler(this.roll_Click);
+            roll.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            roll.Enabled = false;
+            roll.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            roll.Location = new Point(13, 264);
+            roll.Margin = new Padding(3, 4, 3, 4);
+            roll.Name = "roll";
+            roll.Size = new Size(212, 88);
+            roll.TabIndex = 0;
+            roll.Text = "attack";
+            roll.UseVisualStyleBackColor = true;
+            roll.Click += roll_Click;
             // 
             // output
             // 
-            this.output.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.output.Location = new System.Drawing.Point(457, 80);
-            this.output.Multiline = true;
-            this.output.Name = "output";
-            this.output.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.output.Size = new System.Drawing.Size(541, 319);
-            this.output.TabIndex = 1;
+            output.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            output.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            output.Location = new Point(508, 100);
+            output.Margin = new Padding(3, 4, 3, 4);
+            output.Multiline = true;
+            output.Name = "output";
+            output.ScrollBars = ScrollBars.Vertical;
+            output.Size = new Size(601, 398);
+            output.TabIndex = 1;
             // 
             // complex
             // 
-            this.complex.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.complex.Location = new System.Drawing.Point(1119, 443);
-            this.complex.Name = "complex";
-            this.complex.Size = new System.Drawing.Size(68, 67);
-            this.complex.TabIndex = 2;
-            this.complex.Text = "toggle complex counting";
-            this.complex.UseVisualStyleBackColor = true;
-            this.complex.Click += new System.EventHandler(this.complex_Click);
+            complex.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            complex.Font = new Font("Microsoft Sans Serif", 6F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            complex.Location = new Point(1243, 554);
+            complex.Margin = new Padding(3, 4, 3, 4);
+            complex.Name = "complex";
+            complex.Size = new Size(76, 84);
+            complex.TabIndex = 2;
+            complex.Text = "toggle complex counting";
+            complex.UseVisualStyleBackColor = true;
+            complex.Click += complex_Click;
             // 
             // attack
             // 
-            this.attack.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.attack.Location = new System.Drawing.Point(12, 287);
-            this.attack.Multiline = true;
-            this.attack.Name = "attack";
-            this.attack.ReadOnly = true;
-            this.attack.Size = new System.Drawing.Size(439, 223);
-            this.attack.TabIndex = 3;
+            attack.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            attack.Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            attack.Location = new Point(13, 359);
+            attack.Margin = new Padding(3, 4, 3, 4);
+            attack.Multiline = true;
+            attack.Name = "attack";
+            attack.ReadOnly = true;
+            attack.Size = new Size(487, 278);
+            attack.TabIndex = 3;
             // 
             // spell1
             // 
-            this.spell1.Location = new System.Drawing.Point(457, 405);
-            this.spell1.Name = "spell1";
-            this.spell1.Size = new System.Drawing.Size(53, 53);
-            this.spell1.TabIndex = 4;
-            this.spell1.Text = "1";
-            this.spell1.UseVisualStyleBackColor = true;
-            this.spell1.Click += new System.EventHandler(this.spell1_Click);
+            spell1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            spell1.Location = new Point(508, 506);
+            spell1.Margin = new Padding(3, 4, 3, 4);
+            spell1.Name = "spell1";
+            spell1.Size = new Size(59, 66);
+            spell1.TabIndex = 4;
+            spell1.Text = "1";
+            spell1.UseVisualStyleBackColor = true;
+            spell1.Click += spell1_Click;
             // 
             // spell2
             // 
-            this.spell2.Location = new System.Drawing.Point(516, 405);
-            this.spell2.Name = "spell2";
-            this.spell2.Size = new System.Drawing.Size(53, 53);
-            this.spell2.TabIndex = 5;
-            this.spell2.Text = "2";
-            this.spell2.UseVisualStyleBackColor = true;
-            this.spell2.Click += new System.EventHandler(this.spell2_Click);
+            spell2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            spell2.Location = new Point(573, 506);
+            spell2.Margin = new Padding(3, 4, 3, 4);
+            spell2.Name = "spell2";
+            spell2.Size = new Size(59, 66);
+            spell2.TabIndex = 5;
+            spell2.Text = "2";
+            spell2.UseVisualStyleBackColor = true;
+            spell2.Click += spell2_Click;
             // 
             // spell3
             // 
-            this.spell3.Location = new System.Drawing.Point(575, 405);
-            this.spell3.Name = "spell3";
-            this.spell3.Size = new System.Drawing.Size(53, 53);
-            this.spell3.TabIndex = 6;
-            this.spell3.Text = "3";
-            this.spell3.UseVisualStyleBackColor = true;
-            this.spell3.Click += new System.EventHandler(this.spell3_Click);
+            spell3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            spell3.Location = new Point(639, 506);
+            spell3.Margin = new Padding(3, 4, 3, 4);
+            spell3.Name = "spell3";
+            spell3.Size = new Size(59, 66);
+            spell3.TabIndex = 6;
+            spell3.Text = "3";
+            spell3.UseVisualStyleBackColor = true;
+            spell3.Click += spell3_Click;
             // 
             // spell4
             // 
-            this.spell4.Location = new System.Drawing.Point(634, 405);
-            this.spell4.Name = "spell4";
-            this.spell4.Size = new System.Drawing.Size(53, 53);
-            this.spell4.TabIndex = 7;
-            this.spell4.Text = "4";
-            this.spell4.UseVisualStyleBackColor = true;
-            this.spell4.Click += new System.EventHandler(this.spell4_Click);
+            spell4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            spell4.Location = new Point(704, 506);
+            spell4.Margin = new Padding(3, 4, 3, 4);
+            spell4.Name = "spell4";
+            spell4.Size = new Size(59, 66);
+            spell4.TabIndex = 7;
+            spell4.Text = "4";
+            spell4.UseVisualStyleBackColor = true;
+            spell4.Click += spell4_Click;
             // 
             // spell_selected
             // 
-            this.spell_selected.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.spell_selected.Location = new System.Drawing.Point(310, 222);
-            this.spell_selected.Multiline = true;
-            this.spell_selected.Name = "spell_selected";
-            this.spell_selected.Size = new System.Drawing.Size(61, 59);
-            this.spell_selected.TabIndex = 8;
+            spell_selected.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            spell_selected.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            spell_selected.Location = new Point(344, 278);
+            spell_selected.Margin = new Padding(3, 4, 3, 4);
+            spell_selected.Multiline = true;
+            spell_selected.Name = "spell_selected";
+            spell_selected.Size = new Size(67, 73);
+            spell_selected.TabIndex = 8;
             // 
             // enemy_name
             // 
-            this.enemy_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.enemy_name.Location = new System.Drawing.Point(1019, 44);
-            this.enemy_name.Name = "enemy_name";
-            this.enemy_name.Size = new System.Drawing.Size(198, 53);
-            this.enemy_name.TabIndex = 9;
+            enemy_name.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            enemy_name.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            enemy_name.Location = new Point(1132, 55);
+            enemy_name.Margin = new Padding(3, 4, 3, 4);
+            enemy_name.Name = "enemy_name";
+            enemy_name.Size = new Size(220, 53);
+            enemy_name.TabIndex = 9;
             // 
             // enemy_HP
             // 
-            this.enemy_HP.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.enemy_HP.Location = new System.Drawing.Point(1246, 44);
-            this.enemy_HP.Name = "enemy_HP";
-            this.enemy_HP.Size = new System.Drawing.Size(86, 53);
-            this.enemy_HP.TabIndex = 10;
+            enemy_HP.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            enemy_HP.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            enemy_HP.Location = new Point(1384, 55);
+            enemy_HP.Margin = new Padding(3, 4, 3, 4);
+            enemy_HP.Name = "enemy_HP";
+            enemy_HP.Size = new Size(95, 53);
+            enemy_HP.TabIndex = 10;
             // 
             // Next_Turn
             // 
-            this.Next_Turn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Next_Turn.Location = new System.Drawing.Point(1193, 443);
-            this.Next_Turn.Name = "Next_Turn";
-            this.Next_Turn.Size = new System.Drawing.Size(159, 67);
-            this.Next_Turn.TabIndex = 11;
-            this.Next_Turn.Text = "Next Turn";
-            this.Next_Turn.UseVisualStyleBackColor = true;
-            this.Next_Turn.Click += new System.EventHandler(this.Next_Turn_Click);
+            Next_Turn.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            Next_Turn.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            Next_Turn.Location = new Point(1326, 554);
+            Next_Turn.Margin = new Padding(3, 4, 3, 4);
+            Next_Turn.Name = "Next_Turn";
+            Next_Turn.Size = new Size(177, 84);
+            Next_Turn.TabIndex = 11;
+            Next_Turn.Text = "Next Turn";
+            Next_Turn.UseVisualStyleBackColor = true;
+            Next_Turn.Click += Next_Turn_Click;
             // 
             // Player_Name
             // 
-            this.Player_Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Player_Name.Location = new System.Drawing.Point(12, 44);
-            this.Player_Name.Name = "Player_Name";
-            this.Player_Name.Size = new System.Drawing.Size(150, 53);
-            this.Player_Name.TabIndex = 12;
+            Player_Name.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            Player_Name.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            Player_Name.Location = new Point(13, 55);
+            Player_Name.Margin = new Padding(3, 4, 3, 4);
+            Player_Name.Name = "Player_Name";
+            Player_Name.Size = new Size(166, 53);
+            Player_Name.TabIndex = 12;
             // 
             // Player_HP
             // 
-            this.Player_HP.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Player_HP.Location = new System.Drawing.Point(168, 44);
-            this.Player_HP.Name = "Player_HP";
-            this.Player_HP.Size = new System.Drawing.Size(86, 53);
-            this.Player_HP.TabIndex = 13;
+            Player_HP.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            Player_HP.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            Player_HP.Location = new Point(187, 55);
+            Player_HP.Margin = new Padding(3, 4, 3, 4);
+            Player_HP.Name = "Player_HP";
+            Player_HP.Size = new Size(95, 53);
+            Player_HP.TabIndex = 13;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1364, 522);
-            this.Controls.Add(this.Player_HP);
-            this.Controls.Add(this.Player_Name);
-            this.Controls.Add(this.Next_Turn);
-            this.Controls.Add(this.enemy_HP);
-            this.Controls.Add(this.enemy_name);
-            this.Controls.Add(this.spell_selected);
-            this.Controls.Add(this.spell4);
-            this.Controls.Add(this.spell3);
-            this.Controls.Add(this.spell2);
-            this.Controls.Add(this.spell1);
-            this.Controls.Add(this.attack);
-            this.Controls.Add(this.complex);
-            this.Controls.Add(this.output);
-            this.Controls.Add(this.roll);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1516, 652);
+            Controls.Add(Player_HP);
+            Controls.Add(Player_Name);
+            Controls.Add(Next_Turn);
+            Controls.Add(enemy_HP);
+            Controls.Add(enemy_name);
+            Controls.Add(spell_selected);
+            Controls.Add(spell4);
+            Controls.Add(spell3);
+            Controls.Add(spell2);
+            Controls.Add(spell1);
+            Controls.Add(attack);
+            Controls.Add(complex);
+            Controls.Add(output);
+            Controls.Add(roll);
+            FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "Form1";
+            Text = "Form1";
+            Load += Form1_Load;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

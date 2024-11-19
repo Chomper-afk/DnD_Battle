@@ -47,7 +47,7 @@ namespace DnD_Battle
 
             enemy_HP.Text = Test.HP_Check();
 
-            output.Text = Settings.log ;
+            output.Text = Settings.Log ;
 
             info(spell_selector);
 
@@ -107,13 +107,13 @@ namespace DnD_Battle
                 int temp;
                 temp = Test.Melee_attack.Roll(Settings.isComplex);
                 Settings.User.Attack(temp);
-                Settings.log += "\r\n" + Test.Name + "attacks " + Settings.User.Name + " for " + temp + " dmg";
+                Settings.Log += "\r\n" + Test.Name + "attacks " + Settings.User.Name + " for " + temp + " dmg";
             }
             else {
-                Settings.log += "\r\n" + Test.Name + " misses " + Settings.User.Name;
+                Settings.Log += "\r\n" + Test.Name + " misses " + Settings.User.Name;
             }
             Player_HP.Text = Settings.User.HP_Check();
-            output.Text = Settings.log;
+            output.Text = Settings.Log;
             Settings.Actions = 1;
             Settings.B_Actions = 1;
         }

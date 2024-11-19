@@ -56,7 +56,7 @@ namespace DnD_Battle {
             if (CurrentHP < 0) {
                 CurrentHP = 0;
                 Console.WriteLine(Name + " has died!!");
-                Settings.log += "\r\n" + Name + " has died";
+                Settings.Log += "\r\n" + Name + " has died";
             }
             if (CurrentHP > BaseHP) {
                 CurrentHP = BaseHP;

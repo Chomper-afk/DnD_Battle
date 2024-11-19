@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.Logging;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,8 +22,7 @@ namespace DnD_Battle {
 
         public static Player User { get; set; } = new Player("Chomper", new Spellcasting(new int[10] {5,5,5,5,5,5,5,5,5,5} ));
 
-        public static string log { get; set; } = "";
-
+        public static string Log { get; set; } = "";
 
     }
 }
