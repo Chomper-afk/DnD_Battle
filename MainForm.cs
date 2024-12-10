@@ -15,10 +15,11 @@ namespace DnD_Battle {
         }
 
         private void MainForm_Load(object sender, EventArgs e) {
-            Form1 form = new Form1() { TopLevel = false};
-            Main_Panel.Controls.Add(form);
+            Form1 form = new Form1() { TopLevel = false };
+            MainPanel.Controls.Add(form);
             form.Show();
         }
+
 
     }
 }

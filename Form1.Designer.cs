@@ -46,6 +46,7 @@
             // roll
             // 
             roll.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            roll.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             roll.Enabled = false;
             roll.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Point, 238);
             roll.Location = new Point(13, 264);
@@ -210,6 +211,8 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(1516, 652);
             Controls.Add(Player_HP);
             Controls.Add(Player_Name);
@@ -225,13 +228,14 @@
             Controls.Add(complex);
             Controls.Add(output);
             Controls.Add(roll);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
+            StyleChanged += ReSize;
             ResumeLayout(false);
             PerformLayout();
         }

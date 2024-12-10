@@ -23,38 +23,36 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            Main_Panel = new Panel();
             Log = new TextBox();
+            MainPanel = new Panel();
             SuspendLayout();
-            // 
-            // Main_Panel
-            // 
-            Main_Panel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            Main_Panel.AutoSize = true;
-            Main_Panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            Main_Panel.BorderStyle = BorderStyle.FixedSingle;
-            Main_Panel.Location = new Point(0, 0);
-            Main_Panel.Name = "Main_Panel";
-            Main_Panel.Size = new Size(2, 2);
-            Main_Panel.TabIndex = 0;
             // 
             // Log
             // 
             Log.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            Log.Location = new Point(390, 322);
+            Log.Location = new Point(824, 503);
             Log.Multiline = true;
             Log.Name = "Log";
             Log.ScrollBars = ScrollBars.Both;
             Log.Size = new Size(386, 89);
             Log.TabIndex = 1;
             // 
+            // MainPanel
+            // 
+            MainPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            MainPanel.Dock = DockStyle.Fill;
+            MainPanel.Location = new Point(0, 0);
+            MainPanel.Name = "MainPanel";
+            MainPanel.Size = new Size(1209, 631);
+            MainPanel.TabIndex = 2;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(775, 450);
+            ClientSize = new Size(1209, 631);
+            Controls.Add(MainPanel);
             Controls.Add(Log);
-            Controls.Add(Main_Panel);
             Name = "MainForm";
             Text = "MainForm";
             Load += MainForm_Load;
@@ -64,7 +62,7 @@
 
         #endregion
 
-        private Panel Main_Panel;
         private TextBox Log;
+        private Panel MainPanel;
     }
 }

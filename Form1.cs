@@ -13,24 +13,22 @@ namespace DnD_Battle
 {
     public partial class Form1 : Form {
 
-        public Form1()
-        {
+        public Form1() {
             InitializeComponent();
         }
 
         int spell_selector = 0;
-        
-        Creature Test = new Creature("testanimal", new Spellcasting(), 4, 4, 4, 4, 4, 4, 5, 20, new Dice(0,0,0,0,2,0,0));
-            
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            
-            
-            foreach(string file in Directory.GetFiles(Settings.Path)){
+
+        Creature Test = new Creature("testanimal", new Spellcasting(), 4, 4, 4, 4, 4, 4, 5, 20, new Dice(0, 0, 0, 0, 2, 0, 0));
+
+        private void Form1_Load(object sender, EventArgs e) {
+
+
+            foreach (string file in Directory.GetFiles(Settings.Path)) {
                 SpellLoader.LoadSpellsFromXml(file);
             }
 
-            foreach(Spells s in Settings.SpellsWarlock) {
+            foreach (Spells s in Settings.SpellsWarlock) {
                 output.Text += s.Name + ", spellslot = " + s.SpellSlot + ", times = " + s.Times + "\r\n";
             }
 
@@ -38,33 +36,29 @@ namespace DnD_Battle
             Player_Name.Text = Settings.User.Name;
             enemy_HP.Text = Test.HP_Check();
             Player_HP.Text = Settings.User.HP_Check();
-            
+
         }
 
-        private void roll_Click(object sender, EventArgs e)
-        {
+        private void roll_Click(object sender, EventArgs e) {
             Settings.SpellsWarlock[spell_selector].Attack(Settings.User, Test);
 
             enemy_HP.Text = Test.HP_Check();
 
-            output.Text = Settings.Log ;
+            output.Text = Settings.Log;
 
             info(spell_selector);
 
-            if(Test.CurrentHP == 0) {
+            if (Test.CurrentHP == 0) {
                 enemy_name.Text = "DEAD";
             }
-            
+
         }
 
-        private void complex_Click(object sender, EventArgs e)
-        {
-            if (Settings.isComplex)
-            {
+        private void complex_Click(object sender, EventArgs e) {
+            if (Settings.isComplex) {
                 Settings.isComplex = false;
             }
-            else
-            {
+            else {
                 Settings.isComplex = true;
             }
         }
@@ -75,7 +69,7 @@ namespace DnD_Battle
             }
             spell_selected.Text = Settings.User.SpellSlots.SpellSlots[Settings.SpellsWarlock[temp_spell].SpellSlot] + " Spell slots";
         }
-        
+
         private void spell1_Click(object sender, EventArgs e) {
             spell_selected.Text = "Spell 1";
             spell_selector = 0;
@@ -103,7 +97,7 @@ namespace DnD_Battle
         }
 
         private void Next_Turn_Click(object sender, EventArgs e) {
-            if ((Test.DEX_Modifier + Dice.Rolling(20,1))> Settings.User.AC) {
+            if ((Test.DEX_Modifier + Dice.Rolling(20, 1)) > Settings.User.AC) {
                 int temp;
                 temp = Test.Melee_attack.Roll(Settings.isComplex);
                 Settings.User.Attack(temp);
@@ -116,6 +110,12 @@ namespace DnD_Battle
             output.Text = Settings.Log;
             Settings.Actions = 1;
             Settings.B_Actions = 1;
+        }
+
+        private void ReSize(object sender, EventArgs e) {
+            roll.Width = (int)((212.0/ 1516)*this.Width);
+            roll.Height = (int)((88.0/652)* this.Height);
+            roll.Location = new Point((int)((13.0 / 1516) * this.Width), (int)((264.0 / 652) * this.Height));
         }
     }
 }
