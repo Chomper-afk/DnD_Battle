@@ -48,53 +48,58 @@ namespace DnD_Battle {
         }
 
         private static void AddSpellToList(XElement spellElement, List<Spells> spellList) {
-            int spellSlot = int.Parse(spellElement.Element("SpellSlot").Value);
-            int times = int.Parse(spellElement.Element("Times").Value);
-            string name = spellElement.Element("Name").Value;
-            string action = spellElement.Element("Action").Value;
-            Dice heal = new Dice(
-                int.Parse(spellElement.Element("Heal").Element("D1").Value),
-                int.Parse(spellElement.Element("Heal").Element("D4").Value),
-                int.Parse(spellElement.Element("Heal").Element("D6").Value),
-                int.Parse(spellElement.Element("Heal").Element("D8").Value),
-                int.Parse(spellElement.Element("Heal").Element("D10").Value),
-                int.Parse(spellElement.Element("Heal").Element("D12").Value),
-                int.Parse(spellElement.Element("Heal").Element("D20").Value)
-            );
+            if (new[] { "SpellSlot", "Name", "Times", "Action" }.Any(e => spellElement.Element(e) != null)) {
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                int spellSlot = int.Parse(spellElement.Element("SpellSlot").Value);
+                int times = int.Parse(spellElement.Element("Times").Value);
+                string name = spellElement.Element("Name").Value;
+                string action = spellElement.Element("Action").Value;
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+                Dice heal = new Dice(
+                    int.Parse(spellElement.Element("Heal")?.Element("D1")?.Value ?? "0"),
+                    int.Parse(spellElement.Element("Heal")?.Element("D4")?.Value ?? "0"),
+                    int.Parse(spellElement.Element("Heal")?.Element("D6")?.Value ?? "0"),
+                    int.Parse(spellElement.Element("Heal")?.Element("D8")?.Value ?? "0"),
+                    int.Parse(spellElement.Element("Heal")?.Element("D10")?.Value ?? "0"),
+                    int.Parse(spellElement.Element("Heal")?.Element("D12")?.Value ?? "0"),
+                    int.Parse(spellElement.Element("Heal")?.Element("D20")?.Value ?? "0")
+                );
 
-            Dice piercing = new Dice(
-                int.Parse(spellElement.Element("Piercing").Element("D1").Value),
-                int.Parse(spellElement.Element("Piercing").Element("D4").Value),
-                int.Parse(spellElement.Element("Piercing").Element("D6").Value),
-                int.Parse(spellElement.Element("Piercing").Element("D8").Value),
-                int.Parse(spellElement.Element("Piercing").Element("D10").Value),
-                int.Parse(spellElement.Element("Piercing").Element("D12").Value),
-                int.Parse(spellElement.Element("Piercing").Element("D20").Value)
-            );
+                Dice piercing = new Dice(
+                    int.Parse(spellElement.Element("Piercing")?.Element("D1")?.Value ?? "0"),
+                    int.Parse(spellElement.Element("Piercing")?.Element("D4")?.Value ?? "0"),
+                    int.Parse(spellElement.Element("Piercing")?.Element("D6")?.Value ?? "0"),
+                    int.Parse(spellElement.Element("Piercing")?.Element("D8")?.Value ?? "0"),
+                    int.Parse(spellElement.Element("Piercing")?.Element("D10")?.Value ?? "0"),
+                    int.Parse(spellElement.Element("Piercing")?.Element("D12")?.Value ?? "0"),
+                    int.Parse(spellElement.Element("Piercing")?.Element("D20")?.Value ?? "0")
+                );
 
-            Dice blunt = new Dice(
-                int.Parse(spellElement.Element("Blunt").Element("D1").Value),
-                int.Parse(spellElement.Element("Blunt").Element("D4").Value),
-                int.Parse(spellElement.Element("Blunt").Element("D6").Value),
-                int.Parse(spellElement.Element("Blunt").Element("D8").Value),
-                int.Parse(spellElement.Element("Blunt").Element("D10").Value),
-                int.Parse(spellElement.Element("Blunt").Element("D12").Value),
-                int.Parse(spellElement.Element("Blunt").Element("D20").Value)
-            );
+                Dice blunt = new Dice(
+                    int.Parse(spellElement.Element("Blunt")?.Element("D1")?.Value ?? "0"),
+                    int.Parse(spellElement.Element("Blunt")?.Element("D4")?.Value ?? "0"),
+                    int.Parse(spellElement.Element("Blunt")?.Element("D6")?.Value ?? "0"),
+                    int.Parse(spellElement.Element("Blunt")?.Element("D8")?.Value ?? "0"),
+                    int.Parse(spellElement.Element("Blunt")?.Element("D10")?.Value ?? "0"),
+                    int.Parse(spellElement.Element("Blunt")?.Element("D12")?.Value ?? "0"),
+                    int.Parse(spellElement.Element("Blunt")?.Element("D20")?.Value ?? "0")
+                );
 
-            Dice slashing = new Dice(
-                int.Parse(spellElement.Element("Slashing").Element("D1").Value),
-                int.Parse(spellElement.Element("Slashing").Element("D4").Value),
-                int.Parse(spellElement.Element("Slashing").Element("D6").Value),
-                int.Parse(spellElement.Element("Slashing").Element("D8").Value),
-                int.Parse(spellElement.Element("Slashing").Element("D10").Value),
-                int.Parse(spellElement.Element("Slashing").Element("D12").Value),
-                int.Parse(spellElement.Element("Slashing").Element("D20").Value)
-            );
+                Dice slashing = new Dice(
+                    int.Parse(spellElement.Element("Slashing")?.Element("D1")?.Value ?? "0"),
+                    int.Parse(spellElement.Element("Slashing")?.Element("D4")?.Value ?? "0"),
+                    int.Parse(spellElement.Element("Slashing")?.Element("D6")?.Value ?? "0"),
+                    int.Parse(spellElement.Element("Slashing")?.Element("D8")?.Value ?? "0"),
+                    int.Parse(spellElement.Element("Slashing")?.Element("D10")?.Value ?? "0"),
+                    int.Parse(spellElement.Element("Slashing")?.Element("D12")?.Value ?? "0"),
+                    int.Parse(spellElement.Element("Slashing")?.Element("D20")?.Value ?? "0")
+                );
 
-            // Create the Spells object and add it to the respective list
-            Spells spell = new Spells(name,spellSlot, times, action, heal, piercing, blunt, slashing);
-            spellList.Add(spell);
+                // Create the Spells object and add it to the respective list
+                Spells spell = new Spells(name, spellSlot, times, action, heal, piercing, blunt, slashing);
+                spellList.Add(spell);
+            }
+            
         }
     }
 }

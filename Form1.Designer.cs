@@ -211,7 +211,6 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            AutoSize = true;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(1516, 652);
             Controls.Add(Player_HP);
@@ -228,14 +227,13 @@
             Controls.Add(complex);
             Controls.Add(output);
             Controls.Add(roll);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
+            FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
-            StyleChanged += ReSize;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -112,10 +112,71 @@ namespace DnD_Battle
             Settings.B_Actions = 1;
         }
 
-        private void ReSize(object sender, EventArgs e) {
-            roll.Width = (int)((212.0/ 1516)*this.Width);
-            roll.Height = (int)((88.0/652)* this.Height);
-            roll.Location = new Point((int)((13.0 / 1516) * this.Width), (int)((264.0 / 652) * this.Height));
+        public void ReSize(int _width, int _height) {
+            this.Width = _width;
+            this.Height = _height;
+
+            // Calculate scale ratios based on original form size
+            float scaleX = this.Width / 1516f;  // Original width = 1516
+            float scaleY = this.Height / 652f; // Original height = 652
+
+            // Resize and reposition each control
+            roll.Width = (int)(212 * scaleX);
+            roll.Height = (int)(88 * scaleY);
+            roll.Location = new Point((int)(13 * scaleX), (int)(264 * scaleY));
+
+            output.Width = (int)(601 * scaleX);
+            output.Height = (int)(398 * scaleY);
+            output.Location = new Point((int)(508 * scaleX), (int)(100 * scaleY));
+
+            complex.Width = (int)(76 * scaleX);
+            complex.Height = (int)(84 * scaleY);
+            complex.Location = new Point((int)(1243 * scaleX), (int)(554 * scaleY));
+
+            attack.Width = (int)(487 * scaleX);
+            attack.Height = (int)(278 * scaleY);
+            attack.Location = new Point((int)(13 * scaleX), (int)(359 * scaleY));
+
+            spell1.Width = (int)(59 * scaleX);
+            spell1.Height = (int)(66 * scaleY);
+            spell1.Location = new Point((int)(508 * scaleX), (int)(506 * scaleY));
+
+            spell2.Width = (int)(59 * scaleX);
+            spell2.Height = (int)(66 * scaleY);
+            spell2.Location = new Point((int)(573 * scaleX), (int)(506 * scaleY));
+
+            spell3.Width = (int)(59 * scaleX);
+            spell3.Height = (int)(66 * scaleY);
+            spell3.Location = new Point((int)(639 * scaleX), (int)(506 * scaleY));
+
+            spell4.Width = (int)(59 * scaleX);
+            spell4.Height = (int)(66 * scaleY);
+            spell4.Location = new Point((int)(704 * scaleX), (int)(506 * scaleY));
+
+            spell_selected.Width = (int)(67 * scaleX);
+            spell_selected.Height = (int)(73 * scaleY);
+            spell_selected.Location = new Point((int)(344 * scaleX), (int)(278 * scaleY));
+
+            enemy_name.Width = (int)(220 * scaleX);
+            enemy_name.Height = (int)(53 * scaleY);
+            enemy_name.Location = new Point((int)(1132 * scaleX), (int)(55 * scaleY));
+
+            enemy_HP.Width = (int)(95 * scaleX);
+            enemy_HP.Height = (int)(53 * scaleY);
+            enemy_HP.Location = new Point((int)(1384 * scaleX), (int)(55 * scaleY));
+
+            Next_Turn.Width = (int)(177 * scaleX);
+            Next_Turn.Height = (int)(84 * scaleY);
+            Next_Turn.Location = new Point((int)(1326 * scaleX), (int)(554 * scaleY));
+
+            Player_Name.Width = (int)(166 * scaleX);
+            Player_Name.Height = (int)(53 * scaleY);
+            Player_Name.Location = new Point((int)(13 * scaleX), (int)(55 * scaleY));
+
+            Player_HP.Width = (int)(95 * scaleX);
+            Player_HP.Height = (int)(53 * scaleY);
+            Player_HP.Location = new Point((int)(187 * scaleX), (int)(55 * scaleY));
         }
+    
     }
 }

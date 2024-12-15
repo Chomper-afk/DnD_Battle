@@ -13,13 +13,18 @@ namespace DnD_Battle {
         public MainForm() {
             InitializeComponent();
         }
+        Form1 form = new Form1() { TopLevel = false };
 
         private void MainForm_Load(object sender, EventArgs e) {
-            Form1 form = new Form1() { TopLevel = false };
             MainPanel.Controls.Add(form);
+            form.ReSize(MainPanel.Width, MainPanel.Height);
             form.Show();
         }
 
 
+        private void MainForm_SizeChanged(object sender, EventArgs e) {
+            form.ReSize(MainPanel.Width, MainPanel.Height);
+
+        }
     }
 }

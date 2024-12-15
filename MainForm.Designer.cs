@@ -56,6 +56,7 @@
             Name = "MainForm";
             Text = "MainForm";
             Load += MainForm_Load;
+            SizeChanged += MainForm_SizeChanged;
             ResumeLayout(false);
             PerformLayout();
         }
