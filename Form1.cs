@@ -19,7 +19,7 @@ namespace DnD_Battle
 
         int spell_selector = 0;
 
-        Creature Test = new Creature("testanimal", new Spellcasting(), 4, 4, 4, 4, 4, 4, 5, 20, new Dice(0, 0, 0, 0, 2, 0, 0));
+        Creature Test = new Creature("testanimal", new Spellcasting(), new Stat(4), new Stat(4), new Stat(4), new Stat(4), new Stat(4), new Stat(4), 5, 20, 20 ,new Dice(0, 0, 0, 0, 2, 0, 0));
 
         private void Form1_Load(object sender, EventArgs e) {
 
@@ -97,7 +97,7 @@ namespace DnD_Battle
         }
 
         private void Next_Turn_Click(object sender, EventArgs e) {
-            if ((Test.DEX_Modifier + Dice.Rolling(20, 1)) > Settings.User.AC) {
+            if ((Test.DEX.Modifier + Dice.Rolling(20, 1)) > Settings.User.AC) {
                 int temp;
                 temp = Test.Melee_attack.Roll(Settings.isComplex);
                 Settings.User.Attack(temp);

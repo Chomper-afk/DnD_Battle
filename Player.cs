@@ -6,50 +6,39 @@ using System.Threading.Tasks;
 
 namespace DnD_Battle {
     internal class Player : ICreature {
-        public Player(string name, Spellcasting spellSlots, int sTR = 10, int dEX = 10, int cON = 10, int iNT = 10, int wIS = 10, int cHA = 10, int ac = 10, int baseHP = 20, int currentHP = 20, Dice? melee_attack = null ) {
+        public Player(string name, Spellcasting spellSlots, Stat? sTR = null, Stat? dEX = null, Stat? cON = null, Stat? iNT = null, Stat? wIS = null, Stat? cHA = null, int ac = 10, int baseHP = 20, int currentHP = 20, Dice? melee_attack = null ) {
             
             
             Name = name;
-            STR = sTR;
-            DEX = dEX;
-            CON = cON;
-            INT = iNT;
-            WIS = wIS;
-            CHA = cHA;
-            AC = ac;
+            STR = sTR ?? new Stat(10, 0, 100);
+            DEX = dEX ?? new Stat(10, 0, 100);
+            CON = cON ?? new Stat(10, 0, 100);
+            INT = iNT ?? new Stat(10, 0, 100);
+            WIS = wIS ?? new Stat(10, 0, 100);
+            CHA = cHA ?? new Stat(10, 0, 100);
             BaseHP = baseHP;
             CurrentHP = currentHP;
             SpellSlots = spellSlots;
             Melee_attack = melee_attack ?? new Dice(0, 0, 0, 0, 0, 0, 0);
-            STR_Modifier = (STR - 10) / 2;
-            DEX_Modifier = (DEX - 10) / 2;
-            CON_Modifier = (CON - 10) / 2;
-            INT_Modifier = (INT - 10) / 2;
-            WIS_Modifier = (WIS - 10) / 2;
-            CHA_Modifier = (CHA - 10) / 2;
-            AC += DEX_Modifier;
-            SpellcastingModifier = (CHA - 10) / 2;
+            AC_Base = ac ;
+            SpellcastingModifier = CHA.Modifier;
         }
         public int SpellcastingModifier { get; set; }
         public string Name { get; set; }
-        public int STR { get; set; }
-        public int DEX { get; set; }
-        public int CON { get; set; }
-        public int INT { get; set; }
-        public int WIS { get; set; }
-        public int CHA { get; set; }
+        public Stat STR { get; set; }
+        public Stat DEX { get; set; }
+        public Stat CON { get; set; }
+        public Stat INT { get; set; }
+        public Stat WIS { get; set; }
+        public Stat CHA { get; set; }
         public int BaseHP { get; set; }
         public int CurrentHP { get; set; }
         public Spellcasting SpellSlots { get; set; }
         public bool IsRaging { get; set; }
-        public int AC { get; set; }
+        public int AC { get { return (AC_Base + DEX.Modifier); }  }
         public Dice Melee_attack { get; set; }
-        public int STR_Modifier { get; set; }
-        public int DEX_Modifier { get; set; }
-        public int CON_Modifier { get; set; }
-        public int INT_Modifier { get; set; }
-        public int WIS_Modifier { get; set; }
-        public int CHA_Modifier { get; set; }
+
+        private int AC_Base;
 
         public void Attack(int dmg) {
             CurrentHP -= dmg;
