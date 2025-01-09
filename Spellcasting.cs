@@ -6,12 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DnD_Battle {
-    internal class Spellcasting {
+    public class Spellcasting {
 
 
         public Spellcasting(int[] spellSlots = null) {
             
-            SpellSlots = spellSlots ?? new int[10] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            SpellSlots = spellSlots ?? [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         }
         public int[] SpellSlots { get; set; } = new int[10];
     }

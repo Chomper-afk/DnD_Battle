@@ -35,21 +35,21 @@ namespace DnD_Battle
         private int HealC = 0;
 
 
-        public int Attack(Creature enemy) {
+        public int Attack(ICreature enemy) {
             int temp = 0;
             if (HealC != 0) {
                 
-                enemy.Attack( -Heal.Roll(Settings.isComplex) );
+                enemy.Attack( (int)(-Heal.Roll(Settings.isComplex)* enemy.RES_Heal) );
                 
             }
             if (PierceC != 0) {
-                temp += Piercing.Roll(Settings.isComplex);
+                temp += (int)(Piercing.Roll(Settings.isComplex) * enemy.RES_Pierce);
             }
             if (BluntC != 0) {
-                temp += Blunt.Roll(Settings.isComplex);
+                temp += (int)(Blunt.Roll(Settings.isComplex) * enemy.RES_Blunt);
             }
             if (SlashC != 0) {
-                temp += Slashing.Roll(Settings.isComplex);
+                temp += (int)(Slashing.Roll(Settings.isComplex) * enemy.RES_Sharp);
             }
             enemy.Attack(temp);
             return temp;

@@ -19,7 +19,7 @@ namespace DnD_Battle
 
         int spell_selector = 0;
 
-        Creature Test = new Creature("testanimal", new Spellcasting(), new Stat(4), new Stat(4), new Stat(4), new Stat(4), new Stat(4), new Stat(4), 5, 20, 20 ,new Dice(0, 0, 0, 0, 2, 0, 0));
+        Creature Test = new Creature("testanimal", new Spellcasting(), 4, 4, 4, 4, 4, 4, 5, 20, 20 ,new Dice(0, 0, 0, 0, 2, 0, 0));
 
         private void Form1_Load(object sender, EventArgs e) {
 

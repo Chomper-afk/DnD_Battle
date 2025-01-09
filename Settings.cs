@@ -20,6 +20,7 @@ namespace DnD_Battle {
         public static List<Spells> SpellsWarlock {  get; set; } = new List<Spells>();
         public static List<Spells> SpellsWizard { get; set; } = new List<Spells>();
 
+        
         public static Player User { get; set; } = new Player("Chomper", new Spellcasting([5,5,5,5,5,5,5,5,5,5] ));
 
         public static string Log { get; set; } = "";

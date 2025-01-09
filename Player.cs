@@ -6,22 +6,30 @@ using System.Threading.Tasks;
 
 namespace DnD_Battle {
     internal class Player : ICreature {
-        public Player(string name, Spellcasting spellSlots, Stat? sTR = null, Stat? dEX = null, Stat? cON = null, Stat? iNT = null, Stat? wIS = null, Stat? cHA = null, int ac = 10, int baseHP = 20, int currentHP = 20, Dice? melee_attack = null ) {
+        public Player(string name, Spellcasting spellSlots, int _STR = 10, int _DEX = 10, int _CON = 10, int _INT = 10, int _WIS = 10, int _CHA = 10, int ac = 10,
+            int baseHP = 20, int currentHP = 20, Dice? melee_attack = null, List<Effect>? _Effects = null) {
             
             
             Name = name;
-            STR = sTR ?? new Stat(10, 0, 100);
-            DEX = dEX ?? new Stat(10, 0, 100);
-            CON = cON ?? new Stat(10, 0, 100);
-            INT = iNT ?? new Stat(10, 0, 100);
-            WIS = wIS ?? new Stat(10, 0, 100);
-            CHA = cHA ?? new Stat(10, 0, 100);
+            STR = new Stat(_STR, 0, 100);
+            DEX = new Stat(_DEX, 0, 100);
+            CON = new Stat(_CON, 0, 100);
+            INT = new Stat(_INT, 0, 100);
+            WIS = new Stat(_WIS, 0, 100);
+            CHA = new Stat(_CHA, 0, 100);
             BaseHP = baseHP;
             CurrentHP = currentHP;
             SpellSlots = spellSlots;
             Melee_attack = melee_attack ?? new Dice(0, 0, 0, 0, 0, 0, 0);
             AC_Base = ac ;
             SpellcastingModifier = CHA.Modifier;
+            if (_Effects != null) {
+                foreach (Effect E in _Effects) {
+                    Effects.Add(E);
+                }
+            }
+            else
+                Effects = null;
         }
         public int SpellcastingModifier { get; set; }
         public string Name { get; set; }
@@ -37,9 +45,45 @@ namespace DnD_Battle {
         public bool IsRaging { get; set; }
         public int AC { get { return (AC_Base + DEX.Modifier); }  }
         public Dice Melee_attack { get; set; }
+        public List<Effect>? Effects { get; set; }
+        public float RES_Pierce { get; set; } = 1;
+        public float RES_Blunt { get; set; } = 1;
+        public float RES_Sharp { get; set; } = 1;
+        public float RES_Heal { get; set; } = 1;
 
         private int AC_Base;
 
+        private int count(Func<Effect, int> selector) {
+            int total = 0;
+            if (Effects != null) {
+                foreach (Effect E in Effects) {
+                    total += selector(E);
+                }
+            }
+            return total;
+        }
+        private int Minimum_stat_V(Func<Effect, int> selector) {
+            int min = 0;
+            int temp = 0;
+            if (Effects != null) {
+                foreach (Effect E in Effects) {
+                    temp += selector(E);
+                    if (min < temp) min = temp;
+                }
+            }
+            return min;
+        }
+        private int Maximum_stat_V(Func<Effect, int> selector) {
+            int max = 100;
+            int temp = 0;
+            if (Effects != null) {
+                foreach (Effect E in Effects) {
+                    temp += selector(E);
+                    if (max < temp) max = temp;
+                }
+            }
+            return max;
+        }
         public void Attack(int dmg) {
             CurrentHP -= dmg;
             if (CurrentHP < 0) {

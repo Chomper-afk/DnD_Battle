@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DnD_Battle {
-    internal interface ICreature {
+    public interface ICreature {
         public string Name { get; set; }
         public Stat STR { get; set; }
         public Stat DEX { get; set; }
@@ -21,6 +21,12 @@ namespace DnD_Battle {
         public Dice Melee_attack { get; set; }
         public int SpellcastingModifier {  get; set; }
 
+        public float RES_Pierce { get; set; }
+        public float RES_Blunt { get; set; }
+        public float RES_Sharp { get; set; }
+        public float RES_Heal { get; set; }
+
+        public List<Effect>? Effects { get; set; }
 
         public void Attack(int dmg) {
         }

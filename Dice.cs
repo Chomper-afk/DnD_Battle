@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DnD_Battle
 {
-    internal class Dice
+    public class Dice
     {
         public int D1 { get; set; }
         public int D4 { get; set; }
