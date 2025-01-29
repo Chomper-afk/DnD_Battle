@@ -41,6 +41,8 @@
             Next_Turn = new Button();
             Player_Name = new TextBox();
             Player_HP = new TextBox();
+            Player_Info = new Button();
+            Enemy_Info = new Button();
             SuspendLayout();
             // 
             // roll
@@ -207,12 +209,34 @@
             Player_HP.Size = new Size(95, 53);
             Player_HP.TabIndex = 13;
             // 
+            // Player_Info
+            // 
+            Player_Info.Location = new Point(52, 152);
+            Player_Info.Name = "Player_Info";
+            Player_Info.Size = new Size(112, 34);
+            Player_Info.TabIndex = 14;
+            Player_Info.Text = "Player info";
+            Player_Info.UseVisualStyleBackColor = true;
+            Player_Info.Click += Player_Info_Click;
+            // 
+            // Enemy_Info
+            // 
+            Enemy_Info.Location = new Point(1227, 180);
+            Enemy_Info.Name = "Enemy_Info";
+            Enemy_Info.Size = new Size(115, 39);
+            Enemy_Info.TabIndex = 15;
+            Enemy_Info.Text = "Enemy Info";
+            Enemy_Info.UseVisualStyleBackColor = true;
+            Enemy_Info.Click += Enemy_Info_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(1516, 652);
+            Controls.Add(Enemy_Info);
+            Controls.Add(Player_Info);
             Controls.Add(Player_HP);
             Controls.Add(Player_Name);
             Controls.Add(Next_Turn);
@@ -254,6 +278,8 @@
         private System.Windows.Forms.Button Next_Turn;
         private System.Windows.Forms.TextBox Player_Name;
         private System.Windows.Forms.TextBox Player_HP;
+        private Button Player_Info;
+        private Button Enemy_Info;
     }
 }
 

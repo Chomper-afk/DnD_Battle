@@ -8,12 +8,24 @@ namespace DnD_Battle {
     public class Effect {
 
         public string Name { get; set; }
-        public int STR {  get; set; }
+        public int STR { get; set; }
         public int DEX { get; set; }
         public int CON { get; set; }
         public int INT { get; set; }
         public int WIS { get; set; }
         public int CHA { get; set; }
+        public int STR_MIN { get; set; } = Settings.Stat_MIN;
+        public int DEX_MIN { get; set; } = Settings.Stat_MIN;
+        public int CON_MIN { get; set; } = Settings.Stat_MIN;
+        public int INT_MIN { get; set; } = Settings.Stat_MIN;
+        public int WIS_MIN { get; set; } = Settings.Stat_MIN;
+        public int CHA_MIN { get; set; } = Settings.Stat_MIN;
+        public int STR_MAX { get; set; } = Settings.Stat_MAX;
+        public int DEX_MAX { get; set; } = Settings.Stat_MAX;
+        public int CON_MAX { get; set; } = Settings.Stat_MAX;
+        public int INT_MAX { get; set; } = Settings.Stat_MAX;
+        public int WIS_MAX { get; set; } = Settings.Stat_MAX;
+        public int CHA_MAX { get; set; } = Settings.Stat_MAX;
         public float RES_Pierce {  get; set; }
         public float RES_Blunt { get; set; }
         public float RES_Sharp {  get; set; }
@@ -36,6 +48,7 @@ namespace DnD_Battle {
         public override string ToString() {
             string s = Name + "\r\n"
                 + "Stat change: \r\n";
+            string temp = s;
             if (STR > 0) s += "STR +" + STR + "\r\n";
             if (STR < 0) s += "STR "  + STR + "\r\n";
             if (DEX > 0) s += "DEX +" + DEX + "\r\n";
@@ -48,14 +61,17 @@ namespace DnD_Battle {
             if (WIS < 0) s += "WIS "  + WIS + "\r\n";
             if (CHA > 0) s += "CHA +" + CHA + "\r\n";
             if (CHA < 0) s += "CHA "  + CHA + "\r\n";
-            else s += "No stat change\r\n";
 
-            s += "\r\n DMG muplipliers:\r\n";
-            if(RES_Sharp != 0) s += "Slashing multiplier: " + 1 / RES_Sharp + "\r\n";
-            if(RES_Blunt != 0) s += "Bludgoning muliplier: " + 1 / RES_Blunt + "\r\n";
-            if(RES_Pierce != 0) s += "Piercing multiplier: " + 1 / RES_Pierce + "\r\n";
-            if (RES_Heal != 0) s += "Healing multiplier: " + 1 / RES_Heal + "\r\n";
-            else s += "No DMG multipliers";
+            if(temp == s) s += "No stat change\r\n";
+
+            s += "\r\nDMG muplipliers:\r\n";
+            temp = s;
+            if(RES_Sharp != 1) s += "Slashing multiplier: " + 1 / RES_Sharp + "\r\n";
+            if(RES_Blunt != 1) s += "Bludgoning muliplier: " + 1 / RES_Blunt + "\r\n";
+            if(RES_Pierce != 1) s += "Piercing multiplier: " + 1 / RES_Pierce + "\r\n";
+            if (RES_Heal != 1) s += "Healing multiplier: " + 1 / RES_Heal + "\r\n";
+
+            if(temp == s) s += "No DMG multipliers";
 
             return s;
         }

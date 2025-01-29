@@ -19,7 +19,7 @@ namespace DnD_Battle
 
         int spell_selector = 0;
 
-        Creature Test = new Creature("testanimal", new Spellcasting(), 4, 4, 4, 4, 4, 4, 5, 20, 20 ,new Dice(0, 0, 0, 0, 2, 0, 0));
+        Creature Test = new Creature("testanimal", new Spellcasting(), 4, 4, 4, 4, 4, 4, 5, 20, 20, new Dice(0, 0, 0, 0, 2, 0, 0));
 
         private void Form1_Load(object sender, EventArgs e) {
 
@@ -176,7 +176,25 @@ namespace DnD_Battle
             Player_HP.Width = (int)(95 * scaleX);
             Player_HP.Height = (int)(53 * scaleY);
             Player_HP.Location = new Point((int)(187 * scaleX), (int)(55 * scaleY));
+
+            Player_Info.Width = (int)(112 * scaleX);
+            Player_Info.Height = (int)(34 * scaleY);
+            Player_Info.Location = new Point((int)(52 * scaleX), (int)(152 * scaleY));
+
+            Enemy_Info.Width = (int)(115 * scaleX);
+            Enemy_Info.Height = (int)(39 * scaleY);
+            Enemy_Info.Location = new Point((int)(1227 * scaleX), (int)(180 * scaleY));
         }
-    
+
+        private void Player_Info_Click(object sender, EventArgs e) {
+            Info Information = new Info(Settings.User);
+            Information.Show();
+        }
+
+        private void Enemy_Info_Click(object sender, EventArgs e) {
+            Info Information = new Info(Test);
+            Information.Show();
+
+        }
     }
 }

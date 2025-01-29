@@ -11,27 +11,26 @@ namespace DnD_Battle {
             
             
             Name = name;
-            STR = new Stat(_STR, 0, 100);
-            DEX = new Stat(_DEX, 0, 100);
-            CON = new Stat(_CON, 0, 100);
-            INT = new Stat(_INT, 0, 100);
-            WIS = new Stat(_WIS, 0, 100);
-            CHA = new Stat(_CHA, 0, 100);
+            STR = new Stat(_STR, () => Minimum_stat_V(Effects => Effects.WIS_MIN), () => Maximum_stat_V(Effects => Effects.WIS_MAX), () => count(Effects => Effects.STR));
+            DEX = new Stat(_DEX, () => Minimum_stat_V(Effects => Effects.WIS_MIN), () => Maximum_stat_V(Effects => Effects.WIS_MAX), () => count(Effects => Effects.DEX));
+            CON = new Stat(_CON, () => Minimum_stat_V(Effects => Effects.WIS_MIN), () => Maximum_stat_V(Effects => Effects.WIS_MAX), () => count(Effects => Effects.CON));
+            INT = new Stat(_INT, () => Minimum_stat_V(Effects => Effects.WIS_MIN), () => Maximum_stat_V(Effects => Effects.WIS_MAX), () => count(Effects => Effects.INT));
+            WIS = new Stat(_WIS, () => Minimum_stat_V(Effects => Effects.WIS_MIN), () => Maximum_stat_V(Effects => Effects.WIS_MAX), () => count(Effects => Effects.WIS));
+            CHA = new Stat(_CHA, () => Minimum_stat_V(Effects => Effects.WIS_MIN), () => Maximum_stat_V(Effects => Effects.WIS_MAX), () => count(Effects => Effects.CHA));
             BaseHP = baseHP;
             CurrentHP = currentHP;
             SpellSlots = spellSlots;
             Melee_attack = melee_attack ?? new Dice(0, 0, 0, 0, 0, 0, 0);
             AC_Base = ac ;
-            SpellcastingModifier = CHA.Modifier;
             if (_Effects != null) {
                 foreach (Effect E in _Effects) {
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
                     Effects.Add(E);
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
                 }
             }
-            else
-                Effects = null;
         }
-        public int SpellcastingModifier { get; set; }
+        public int SpellcastingModifier { get { return CHA.Modifier; } }
         public string Name { get; set; }
         public Stat STR { get; set; }
         public Stat DEX { get; set; }
@@ -45,7 +44,7 @@ namespace DnD_Battle {
         public bool IsRaging { get; set; }
         public int AC { get { return (AC_Base + DEX.Modifier); }  }
         public Dice Melee_attack { get; set; }
-        public List<Effect>? Effects { get; set; }
+        public List<Effect>? Effects { get; set; } = new List<Effect>();
         public float RES_Pierce { get; set; } = 1;
         public float RES_Blunt { get; set; } = 1;
         public float RES_Sharp { get; set; } = 1;

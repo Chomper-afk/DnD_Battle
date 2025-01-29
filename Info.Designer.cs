@@ -27,6 +27,7 @@
             LB_Stats = new ListBox();
             LB_Effects = new ListBox();
             TB_Effect_Info = new TextBox();
+            button1 = new Button();
             SuspendLayout();
             // 
             // TB_Name
@@ -57,9 +58,11 @@
             LB_Effects.Name = "LB_Effects";
             LB_Effects.Size = new Size(496, 204);
             LB_Effects.TabIndex = 2;
+            LB_Effects.SelectedIndexChanged += LB_Effects_SelectedIndexChanged;
             // 
             // TB_Effect_Info
             // 
+            TB_Effect_Info.ForeColor = Color.Black;
             TB_Effect_Info.Location = new Point(20, 596);
             TB_Effect_Info.Multiline = true;
             TB_Effect_Info.Name = "TB_Effect_Info";
@@ -67,16 +70,27 @@
             TB_Effect_Info.Size = new Size(488, 369);
             TB_Effect_Info.TabIndex = 3;
             // 
+            // button1
+            // 
+            button1.Location = new Point(343, 179);
+            button1.Name = "button1";
+            button1.Size = new Size(135, 106);
+            button1.TabIndex = 4;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // Info
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(533, 995);
+            Controls.Add(button1);
             Controls.Add(TB_Effect_Info);
             Controls.Add(LB_Effects);
             Controls.Add(LB_Stats);
             Controls.Add(TB_Name);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Info";
             Text = "Info";
             Load += Info_Load;
@@ -90,5 +104,6 @@
         private ListBox LB_Stats;
         private ListBox LB_Effects;
         private TextBox TB_Effect_Info;
+        private Button button1;
     }
 }

@@ -19,7 +19,7 @@ namespace DnD_Battle {
         public bool IsRaging { get; set; }
         public int AC { get;}
         public Dice Melee_attack { get; set; }
-        public int SpellcastingModifier {  get; set; }
+        public int SpellcastingModifier {  get; }
 
         public float RES_Pierce { get; set; }
         public float RES_Blunt { get; set; }

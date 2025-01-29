@@ -20,6 +20,8 @@ namespace DnD_Battle {
         public static List<Spells> SpellsWarlock {  get; set; } = new List<Spells>();
         public static List<Spells> SpellsWizard { get; set; } = new List<Spells>();
 
+        public static int Stat_MIN { get; set; } = 0;
+        public static int Stat_MAX { get; set; } = 100;
         
         public static Player User { get; set; } = new Player("Chomper", new Spellcasting([5,5,5,5,5,5,5,5,5,5] ));
 

@@ -14,14 +14,20 @@ namespace DnD_Battle {
                 return 0;
             } set { Base_P = value; } }
         public int Modifier { get { return (Base - 10) / 2; } }
-        public int Minimum { get; set; }
-        public int Maximum { get; set; }
-        public int Change {  get; set; }
+        public int Minimum => Min();
+        public int Maximum => Max();
+        public int Change => Changeing();
 
-        public Stat(int _Base, int _Min = 0, int _Max = 100) {
+        private Func<int> Min;
+        private Func<int> Max;
+        private Func<int> Changeing;
+
+
+        public Stat(int _Base, Func<int> _Min, Func<int> _Max, Func<int> _Changing) {
             Base = _Base;
-            Minimum = _Min;
-            Maximum = _Max;
+            Min = _Min;
+            Max = _Max;
+            Changeing = _Changing;
         }
 
         private int Base_P;
