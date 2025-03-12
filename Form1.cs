@@ -8,9 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using DnD_Battle.Spell_Stuff;
+using DnD_Battle.Creatures;
 
-namespace DnD_Battle
-{
+namespace DnD_Battle {
     public partial class Form1 : Form {
 
         public Form1() {

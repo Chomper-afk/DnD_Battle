@@ -6,6 +6,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using DnD_Battle.Spell_Stuff;
+using DnD_Battle.Creatures;
 
 namespace DnD_Battle {
     static class Settings {

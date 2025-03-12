@@ -1,4 +1,4 @@
-﻿namespace DnD_Battle {
+﻿namespace DnD_Battle.Creatures {
     partial class Info {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
             LB_Effects = new ListBox();
             TB_Effect_Info = new TextBox();
             button1 = new Button();
+            button2 = new Button();
             SuspendLayout();
             // 
             // TB_Name
@@ -72,7 +73,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(343, 179);
+            button1.Location = new Point(373, 152);
             button1.Name = "button1";
             button1.Size = new Size(135, 106);
             button1.TabIndex = 4;
@@ -80,11 +81,22 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // button2
+            // 
+            button2.Location = new Point(373, 288);
+            button2.Name = "button2";
+            button2.Size = new Size(135, 75);
+            button2.TabIndex = 5;
+            button2.Text = "button2";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
             // Info
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(533, 995);
+            Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(TB_Effect_Info);
             Controls.Add(LB_Effects);
@@ -105,5 +117,6 @@
         private ListBox LB_Effects;
         private TextBox TB_Effect_Info;
         private Button button1;
+        private Button button2;
     }
 }

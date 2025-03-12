@@ -1,6 +1,8 @@
-﻿using System;
+﻿using DnD_Battle.Creatures;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,25 +28,70 @@ namespace DnD_Battle {
         public int INT_MAX { get; set; } = Settings.Stat_MAX;
         public int WIS_MAX { get; set; } = Settings.Stat_MAX;
         public int CHA_MAX { get; set; } = Settings.Stat_MAX;
-        public float RES_Pierce {  get; set; }
-        public float RES_Blunt { get; set; }
-        public float RES_Sharp {  get; set; }
-        public float RES_Heal { get; set; }
-        public Effect(string _Name, int _STR = 0, int _DEX = 0, int _CON = 0, int _INT = 0, int _WIS = 0, int _CHA = 0,
-            float _RES_Pierce = 1, float _RES_Blunt = 1, float _RES_Sharp = 1, float _RES_Heal = 1) {
+        public float RES_Pierce { get; set; } = 1;
+        public float RES_Blunt { get; set; } = 1;
+        public float RES_Sharp { get; set; } = 1;
+        public float RES_Heal { get; set; } = 1;
+        public float RES_Acid { get; set; } = 1;
+        public float RES_Cold { get; set; } = 1;
+        public float RES_Fire { get; set; } = 1;
+        public float RES_Force { get; set; } = 1;
+        public float RES_Lightning { get; set; } = 1;
+        public float RES_Necrotic { get; set; } = 1;
+        public float RES_Poison { get; set; } = 1;
+        public float RES_Psychic { get; set; } = 1;
+        public float RES_Radiant { get; set; } = 1;
+        public float RES_Thunder { get; set; } = 1;
+
+
+        public float M_RES_Pierce { get; set; } = 1;
+        public float M_RES_Blunt { get; set; } = 1;
+        public float M_RES_Sharp { get; set; } = 1;
+        public float M_RES_Heal { get; set; } = 1;
+        public float M_RES_Acid { get; set; } = 1;
+        public float M_RES_Cold { get; set; } = 1;
+        public float M_RES_Fire { get; set; } = 1;
+        public float M_RES_Force { get; set; } = 1;
+        public float M_RES_Lightning { get; set; } = 1;
+        public float M_RES_Necrotic { get; set; } = 1;
+        public float M_RES_Poison { get; set; } = 1;
+        public float M_RES_Psychic { get; set; } = 1;
+        public float M_RES_Radiant { get; set; } = 1;
+        public float M_RES_Thunder { get; set; } = 1;
+
+        public int Counter { get; set; }
+
+        public Effect(Effect _Effect) {
+            foreach (PropertyInfo property in typeof(Creature).GetProperties()) {
+                property.SetValue(this, property.GetValue(_Effect));
+            }
+        }
+        public Effect(string _Name, int _Counter = -1, int _STR = 0, int _DEX = 0, int _CON = 0, int _INT = 0, int _WIS = 0, int _CHA = 0) {
             Name = _Name;
+            Counter = _Counter;
             STR = _STR;
             DEX = _DEX;
             CON = _CON;
             INT = _INT;
             WIS = _WIS;
             CHA = _CHA;
-            RES_Pierce = _RES_Pierce;
-            RES_Blunt = _RES_Blunt;
-            RES_Sharp = _RES_Sharp;
-            RES_Heal = _RES_Heal;
         }
 
+        /// <summary>
+        /// Decays effect
+        /// returns 0 if time has run out |
+        /// returns 1 if there is still time |
+        /// returns -1 if it doesn't decay
+        /// </summary>
+        /// <returns></returns>
+        public int Decay() {
+            if (Counter >= 0) {
+                Counter--;
+                if (Counter == 0) return 0;
+                return 1;
+            }
+            return -1;
+        }
         public override string ToString() {
             string s = Name + "\r\n"
                 + "Stat change: \r\n";

@@ -8,20 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DnD_Battle {
+namespace DnD_Battle.Creatures {
     public partial class Info : Form {
-        private ICreature Subject;
-        public Info(ICreature _subject) {
+        private ACreature Subject;
+        public Info(ACreature _subject) {
             InitializeComponent();
             Subject = _subject;
         }
 
         private void Info_Load(object sender, EventArgs e) {
             Data_Refresh();
+            if (Subject == null) throw new Exception("Something seriusly went wrong");
         }
 
         private void button1_Click(object sender, EventArgs e) {
-            Subject.Effects.Add(new Effect("Testing Effect, + 20 every stat", 20, 20, 20, 20, 20, 20));
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+            Subject.Effects.Add(new Effect("Testing Effect, + 20 every stat",-1, 20, 20, 20, 20, 20, 20));
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
             Data_Refresh();
         }
         private void Data_Refresh() {
@@ -58,7 +61,17 @@ namespace DnD_Battle {
 
         private void LB_Effects_SelectedIndexChanged(object sender, EventArgs e) {
             if (LB_Effects.SelectedIndex != -1) {
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
                 TB_Effect_Info.Text = Subject.Effects[LB_Effects.SelectedIndex].ToString();
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e) {
+            if(LB_Effects.SelectedIndex != -1) {
+                Subject.Effects.Remove(Subject.Effects[LB_Effects.SelectedIndex]);
+                LB_Effects_Write();
+                TB_Effect_Info.Text = "";
             }
         }
     }

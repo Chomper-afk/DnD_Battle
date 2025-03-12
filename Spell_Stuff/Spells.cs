@@ -5,22 +5,14 @@ using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DnD_Battle.Creatures;
 
-namespace DnD_Battle {
-    internal class Spells : DMG{
+namespace DnD_Battle.Spell_Stuff {
+    internal class Spells : DMG {
 
-
-        /// <summary>
-        /// Class for spells/cantrips
-        /// </summary>
-        /// <param name="name">Name of a spell</param>
-        /// <param name="spellSlot">Which spellslot it uses, 0 for cantrips</param>
-        /// <param name="times">How many times does it hit, specific stuff gets added on hit</param>
-        /// <param name="heal">Healing</param>
-        /// <param name="piercing">Piercing DMG</param>
-        /// <param name="blunt">Blunt DMG</param>
-        /// <param name="slashing">Slashing DMG</param>
-        public Spells(string name, int spellSlot, int times, string action, Dice heal, Dice piercing, Dice blunt, Dice slashing) : base(heal,piercing,blunt,slashing){
+        public Spells(string name, int spellSlot, int times, string action, Dice? heal = null, Dice? piercing = null, Dice? blunt = null, Dice? slashing = null, Dice? acid = null, Dice? cold = null,
+        Dice? fire = null, Dice? force = null, Dice? lightning = null, Dice? necrotic = null, Dice? poison = null, Dice? psychic = null, Dice? radiant = null, Dice? thunder = null) : 
+        base(heal, piercing, blunt, slashing, acid, cold, fire, force, lightning, necrotic, poison, psychic, radiant, thunder) {
 
             SpellSlot = spellSlot;
             Times = times;
@@ -40,13 +32,13 @@ namespace DnD_Battle {
         public string Name { get; }
         public int SpellSlot { get; }
         public int Action { get; }
-        private string Action_txt {  get; set; }
+        private string Action_txt { get; set; }
         public int Times;
 
-         public void Attack(Player P1, Creature enemy) {
+        public void Attack(ACreature P1, ACreature enemy) {
             int temp;
-            if (P1.SpellSlots.SpellSlots[SpellSlot] > 0 || SpellSlot == 0 ) {
-                if (!((Action == 1 && Settings.Actions <= 0) || (Action == 2 && Settings.B_Actions <= 0))) {
+            if (P1.SpellSlots.SpellSlots[SpellSlot] > 0 || SpellSlot == 0) {
+                if (!(Action == 1 && Settings.Actions <= 0 || Action == 2 && Settings.B_Actions <= 0)) {
                     P1.SpellSlots.SpellSlots[SpellSlot]--;
                     switch (Action) {
                         case 1:
@@ -57,8 +49,8 @@ namespace DnD_Battle {
                             break;
                     }
                     for (int i = 0; i < Times; i++) {
-                        if ((Dice.Rolling(20,1) + P1.SpellcastingModifier)> enemy.AC) {
-                            temp = base.Attack(enemy);
+                        if (Dice.Rolling(20, 1) + P1.SpellcastingModifier > enemy.AC) {
+                            temp = Attack(enemy);
                             enemy.CurrentHP -= P1.SpellcastingModifier;
                             Settings.Log += "\r\n" + P1.Name + " hits " + enemy.Name + "for a total of " + (temp + P1.SpellcastingModifier) + "DMG";
                         }
@@ -90,8 +82,8 @@ namespace DnD_Battle {
             string s = "2";
 
             s = Name + "\r\nSpellslot: " + SpellSlot + "\r\nTimes: " + Times + "\r\nAction/Bonus Action: " + Action_txt + "\r\n";
-            s += "Blunt = " + element_output(Blunt) + "Slashing = " + element_output(Slashing);
-            s += "Piercing = " + element_output(Piercing);
+            s += "Blunt = " + element_output(Blunt) + "Slashing = " + element_output(Slash);
+            s += "Piercing = " + element_output(Pierce);
             return s;
         }
 

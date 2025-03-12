@@ -7,7 +7,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.IO;
 
-namespace DnD_Battle {
+namespace DnD_Battle.Spell_Stuff{
     public class SpellLoader {
         public static void LoadSpellsFromXml(string filePath) {
 
@@ -23,24 +23,19 @@ namespace DnD_Battle {
                     AddSpellToList(spellElement, Settings.SpellsWizard);
                 }
             }
-            catch (FileNotFoundException)
-            {
+            catch (FileNotFoundException) {
                 Console.WriteLine($"Error: The file '{filePath}' could not be found.");
             }
-            catch (DirectoryNotFoundException)
-            {
+            catch (DirectoryNotFoundException) {
                 Console.WriteLine($"Error: The directory for the file '{filePath}' does not exist.");
             }
-            catch (XmlException ex)
-            {
+            catch (XmlException ex) {
                 Console.WriteLine($"Error: The file '{filePath}' is not a valid XML document. {ex.Message}");
             }
-            catch (UnauthorizedAccessException)
-            {
+            catch (UnauthorizedAccessException) {
                 Console.WriteLine($"Error: Access to the file or directory '{filePath}' is denied.");
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 // Catch any other exceptions that might occur
                 Console.WriteLine($"An unexpected error occurred: {ex.Message}");
             }
@@ -99,7 +94,7 @@ namespace DnD_Battle {
                 Spells spell = new Spells(name, spellSlot, times, action, heal, piercing, blunt, slashing);
                 spellList.Add(spell);
             }
-            
+
         }
     }
 }

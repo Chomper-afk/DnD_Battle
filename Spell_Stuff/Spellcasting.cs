@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DnD_Battle {
+namespace DnD_Battle.Spell_Stuff{
     public class Spellcasting {
 
 
-        public Spellcasting(int[] spellSlots = null) {
-            
+        public Spellcasting(int[]? spellSlots = null) {
+
             SpellSlots = spellSlots ?? [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         }
         public int[] SpellSlots { get; set; } = new int[10];
