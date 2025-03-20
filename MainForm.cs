@@ -19,7 +19,6 @@ namespace DnD_Battle {
             MainPanel.Controls.Add(form);
             form.ReSize(MainPanel.Width, MainPanel.Height);
             form.Show();
-            Console.WriteLine("");
         }
 
 

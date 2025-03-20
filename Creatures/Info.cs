@@ -72,6 +72,7 @@ namespace DnD_Battle.Creatures {
                 Subject.Effects.Remove(Subject.Effects[LB_Effects.SelectedIndex]);
                 LB_Effects_Write();
                 TB_Effect_Info.Text = "";
+                LB_Stats_Write();
             }
         }
     }

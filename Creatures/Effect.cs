@@ -1,12 +1,11 @@
-﻿using DnD_Battle.Creatures;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DnD_Battle {
+namespace DnD_Battle.Creatures {
     public class Effect {
 
         public string Name { get; set; }
@@ -61,11 +60,13 @@ namespace DnD_Battle {
 
         public int Counter { get; set; }
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         public Effect(Effect _Effect) {
             foreach (PropertyInfo property in typeof(Creature).GetProperties()) {
                 property.SetValue(this, property.GetValue(_Effect));
             }
         }
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         public Effect(string _Name, int _Counter = -1, int _STR = 0, int _DEX = 0, int _CON = 0, int _INT = 0, int _WIS = 0, int _CHA = 0) {
             Name = _Name;
             Counter = _Counter;
@@ -97,28 +98,28 @@ namespace DnD_Battle {
                 + "Stat change: \r\n";
             string temp = s;
             if (STR > 0) s += "STR +" + STR + "\r\n";
-            if (STR < 0) s += "STR "  + STR + "\r\n";
+            if (STR < 0) s += "STR " + STR + "\r\n";
             if (DEX > 0) s += "DEX +" + DEX + "\r\n";
-            if (DEX < 0) s += "DEX "  + DEX + "\r\n";
+            if (DEX < 0) s += "DEX " + DEX + "\r\n";
             if (CON > 0) s += "CON +" + CON + "\r\n";
-            if (CON < 0) s += "CON "  + CON + "\r\n";
+            if (CON < 0) s += "CON " + CON + "\r\n";
             if (INT > 0) s += "INT +" + INT + "\r\n";
-            if (INT < 0) s += "INT "  + INT + "\r\n";
+            if (INT < 0) s += "INT " + INT + "\r\n";
             if (WIS > 0) s += "WIS +" + WIS + "\r\n";
-            if (WIS < 0) s += "WIS "  + WIS + "\r\n";
+            if (WIS < 0) s += "WIS " + WIS + "\r\n";
             if (CHA > 0) s += "CHA +" + CHA + "\r\n";
-            if (CHA < 0) s += "CHA "  + CHA + "\r\n";
+            if (CHA < 0) s += "CHA " + CHA + "\r\n";
 
-            if(temp == s) s += "No stat change\r\n";
+            if (temp == s) s += "No stat change\r\n";
 
             s += "\r\nDMG muplipliers:\r\n";
             temp = s;
-            if(RES_Sharp != 1) s += "Slashing multiplier: " + 1 / RES_Sharp + "\r\n";
-            if(RES_Blunt != 1) s += "Bludgoning muliplier: " + 1 / RES_Blunt + "\r\n";
-            if(RES_Pierce != 1) s += "Piercing multiplier: " + 1 / RES_Pierce + "\r\n";
+            if (RES_Sharp != 1) s += "Slashing multiplier: " + 1 / RES_Sharp + "\r\n";
+            if (RES_Blunt != 1) s += "Bludgoning muliplier: " + 1 / RES_Blunt + "\r\n";
+            if (RES_Pierce != 1) s += "Piercing multiplier: " + 1 / RES_Pierce + "\r\n";
             if (RES_Heal != 1) s += "Healing multiplier: " + 1 / RES_Heal + "\r\n";
 
-            if(temp == s) s += "No DMG multipliers";
+            if (temp == s) s += "No DMG multipliers";
 
             return s;
         }

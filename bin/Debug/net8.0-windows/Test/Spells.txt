@@ -5,18 +5,11 @@
             <SpellSlot>0</SpellSlot>
             <Times>3</Times>
 <Action>A</Action>
-            <Heal>
-                <D4>1</D4>
-            </Heal>
-            <Piercing>
-                <D4>1</D4>
-            </Piercing>
-            <Blunt>
-                <D6>1</D6>
-            </Blunt>
-            <Slashing>
-                <D10>1</D10>
-            </Slashing>
+<DMG>
+<Force>
+<D10>1</D10>
+</Force>
+</DMG>
         </Spell>
     </WarlockSpells>
 </SpellsList>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using DnD_Battle.Creatures;
@@ -9,6 +10,32 @@ namespace DnD_Battle
 {
     internal class DMG
     {
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+        public DMG(DMG _DMG) {
+            if (_DMG == null) _DMG = new DMG();
+            foreach (PropertyInfo property in typeof(DMG).GetProperties()) {
+                property.SetValue(this, property.GetValue(_DMG));
+            }
+
+            HealC = Heal?.Roll(true) ?? 0;
+            PierceC = Pierce?.Roll(true) ?? 0;
+            BluntC = Blunt?.Roll(true) ?? 0;
+            SlashC = Slash?.Roll(true) ?? 0;
+            AcidC = Acid?.Roll(true) ?? 0;
+            ColdC = Cold?.Roll(true) ?? 0;
+            FireC = Fire?.Roll(true) ?? 0;
+            ForceC = Force?.Roll(true) ?? 0;
+            LightningC = Lightning?.Roll(true) ?? 0;
+            NecroticC = Necrotic?.Roll(true) ?? 0;
+            PoisonC = Poison?.Roll(true) ?? 0;
+            PsychicC = Psychic?.Roll(true) ?? 0;
+            RadiantC = Radiant?.Roll(true) ?? 0;
+            ThunderC = Thunder?.Roll(true) ?? 0;
+        }
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+
+
+
         public DMG(Dice? heal = null, Dice? piercing = null, Dice? blunt = null, Dice? slashing = null, Dice? acid = null, Dice? cold = null, Dice? fire = null, Dice? force = null,
                Dice? lightning = null, Dice? necrotic = null, Dice? poison = null, Dice? psychic = null, Dice? radiant = null, Dice? thunder = null) {
 
@@ -44,20 +71,22 @@ namespace DnD_Battle
             ThunderC = Thunder.Roll(true);
         }
 
-        public Dice Pierce { get; }
-        public Dice Blunt { get; }
-        public Dice Slash { get; }
-        public Dice Heal { get; }
-        public Dice Acid { get; }
-        public Dice Cold { get; }
-        public Dice Fire { get; }
-        public Dice Force { get; }
-        public Dice Lightning { get; }
-        public Dice Necrotic { get; }
-        public Dice Poison { get; }
-        public Dice Psychic { get; }
-        public Dice Radiant { get; }
-        public Dice Thunder { get; }
+
+
+        public Dice Pierce { get; set;}
+        public Dice Blunt { get; set;}
+        public Dice Slash { get; set;}
+        public Dice Heal { get; set;}
+        public Dice Acid { get; set;}
+        public Dice Cold { get; set;}
+        public Dice Fire { get; set;}
+        public Dice Force { get; set;}
+        public Dice Lightning { get; set;}
+        public Dice Necrotic { get; set;}
+        public Dice Poison { get; set;}
+        public Dice Psychic { get; set;}
+        public Dice Radiant { get; set;}
+        public Dice Thunder { get; set;}
 
         // gleda dali ima ikoju kocku pod tim tipom
         private int PierceC = 0;

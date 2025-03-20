@@ -10,6 +10,20 @@ using DnD_Battle.Creatures;
 namespace DnD_Battle.Spell_Stuff {
     internal class Spells : DMG {
 
+        public Spells(string name, int spellSlot, int times, string action, DMG _DMG) : base(_DMG) {
+            SpellSlot = spellSlot;
+            Times = times;
+            Name = name;
+            switch (action) {
+                case "A":
+                    Action = 1;
+                    break;
+                case "B":
+                    Action = 2;
+                    break;
+            }
+            Action_txt = action;
+        }
         public Spells(string name, int spellSlot, int times, string action, Dice? heal = null, Dice? piercing = null, Dice? blunt = null, Dice? slashing = null, Dice? acid = null, Dice? cold = null,
         Dice? fire = null, Dice? force = null, Dice? lightning = null, Dice? necrotic = null, Dice? poison = null, Dice? psychic = null, Dice? radiant = null, Dice? thunder = null) : 
         base(heal, piercing, blunt, slashing, acid, cold, fire, force, lightning, necrotic, poison, psychic, radiant, thunder) {

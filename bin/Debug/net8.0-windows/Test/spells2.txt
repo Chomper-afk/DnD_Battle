@@ -5,21 +5,24 @@
             <SpellSlot>3</SpellSlot>
             <Times>2</Times>
 <Action>B</Action>
-            <Piercing>
+<DMG>
+            <Pierce>
                 <D4>1</D4>
-            </Piercing>
+            </Pierce>
             <Blunt>
                 <D6>1</D6>
             </Blunt>
             <Slashing>
                 <D8>1</D8>
             </Slashing>
+</DMG>
         </Spell>
         <Spell>
             <Name>Crushing Slice</Name>
     <SpellSlot>2</SpellSlot>
     <Times>1</Times>
 <Action>A</Action>
+<DMG>
     <Blunt>
         <D4>1</D4>
         <D6>2</D6>
@@ -28,6 +31,7 @@
         <D6>1</D6>
         <D8>1</D8>
     </Slashing>
+</DMG>
         </Spell>
     </WarlockSpells>
 </SpellsList>
