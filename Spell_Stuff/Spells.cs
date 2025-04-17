@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using DnD_Battle.Creatures;
 
 namespace DnD_Battle.Spell_Stuff {
-    internal class Spells : DMG {
+    public class Spells : DMG {
 
         public Spells(string name, int spellSlot, int times, string action, DMG _DMG) : base(_DMG) {
             SpellSlot = spellSlot;

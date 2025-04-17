@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DnD_Battle {
+namespace DnD_Battle.Creatures {
     public class Stat {
 
         public int Base { get {

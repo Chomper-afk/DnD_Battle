@@ -8,7 +8,7 @@ using DnD_Battle.Creatures;
 
 namespace DnD_Battle
 {
-    internal class DMG
+    public class DMG
     {
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         public DMG(DMG _DMG) {

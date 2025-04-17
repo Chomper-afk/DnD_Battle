@@ -22,7 +22,7 @@ namespace DnD_Battle {
         public static List<Spells> SpellsWarlock {  get; set; } = new List<Spells>();
         public static List<Spells> SpellsWizard { get; set; } = new List<Spells>();
 
-        
+        public static List<Classes> Classes {  get; set; }
 
 
         public static int Stat_MIN { get; set; } = 0;

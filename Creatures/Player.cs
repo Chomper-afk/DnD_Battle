@@ -11,6 +11,8 @@ namespace DnD_Battle.Creatures {
             int baseHP = 20, int currentHP = 20, Dice? melee_attack = null, List<Effect>? _Effects = null) : base(name, spellSlots, _STR, _DEX, _CON, _INT, _WIS, _CHA, ac, baseHP,
             currentHP, melee_attack, _Effects) { }
         
+        List<Classes> Classes = new List<Classes>();
 
+        public override int BaseHP { get { int temp = baseHP_; if (Classes.Count > 0) { temp = 0; foreach (Classes C in Classes) { temp += C.HitDice + CON.Modifier; } } return temp; } set => baseHP_ = value; }
     }
 }

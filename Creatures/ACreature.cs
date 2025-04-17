@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using DnD_Battle.Spell_Stuff;
 
 namespace DnD_Battle.Creatures {
-    public abstract class ACreature {
+    public abstract class ACreature{
         public ACreature(string name, Spellcasting spellSlots, int _STR = 10, int _DEX = 10, int _CON = 10, int _INT = 10, int _WIS = 10, int _CHA = 10, int ac = 10,
-            int baseHP = 20, int currentHP = 20, Dice? melee_attack = null, List<Effect>? _Effects = null) {
+            int baseHP = 20, int? currentHP = null, Dice? melee_attack = null, List<Effect>? _Effects = null) {
 
             Name = name;
             STR = new Stat(_STR, () => Minimum_stat_V(Effects => Effects.WIS_MIN), () => Maximum_stat_V(Effects => Effects.WIS_MAX), () => Count(Effects => Effects.STR));
@@ -18,12 +18,12 @@ namespace DnD_Battle.Creatures {
             WIS = new Stat(_WIS, () => Minimum_stat_V(Effects => Effects.WIS_MIN), () => Maximum_stat_V(Effects => Effects.WIS_MAX), () => Count(Effects => Effects.WIS));
             CHA = new Stat(_CHA, () => Minimum_stat_V(Effects => Effects.WIS_MIN), () => Maximum_stat_V(Effects => Effects.WIS_MAX), () => Count(Effects => Effects.CHA));
             BaseHP = baseHP;
-            CurrentHP = currentHP;
+            CurrentHP = currentHP ?? baseHP;
             SpellSlots = spellSlots;
             Melee_attack = melee_attack ?? new Dice(0, 5, 0, 0, 0, 0, 0);
             AC_Base = ac;
             if (_Effects != null) {
-                Effects = new List<Effect>(_Effects);
+                Effects = _Effects;
             }
             else Effects = new List<Effect>();
         }
@@ -35,7 +35,7 @@ namespace DnD_Battle.Creatures {
         public Stat INT { get; set; }
         public Stat WIS { get; set; }
         public Stat CHA { get; set; }
-        public int BaseHP { get; set; }
+        public abstract int BaseHP { get; set; }
         public int CurrentHP { get; set; }
         public Spellcasting SpellSlots { get; set; }
         public bool IsRaging { get; set; }
@@ -76,6 +76,7 @@ namespace DnD_Battle.Creatures {
 
         public List<Effect>? Effects { get; set; } = new List<Effect>();
         private int AC_Base;
+        public int baseHP_;
 
         private int Count(Func<Effect, int> selector) {
             int total = 0;
@@ -140,6 +141,7 @@ namespace DnD_Battle.Creatures {
                 CurrentHP = BaseHP;
             }
         }
+
 
         public string HP_Check() {
             return CurrentHP + "/" + BaseHP;

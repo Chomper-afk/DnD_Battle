@@ -12,7 +12,7 @@ namespace DnD_Battle.Loaders {
     public class SpellLoader {
         public static void LoadSpellsFromXml(string filePath) {
 
-            //try 
+            try 
                 {
                 XDocument doc = XDocument.Load(filePath);
 
@@ -25,7 +25,7 @@ namespace DnD_Battle.Loaders {
                     AddSpellToList(spellElement, Settings.SpellsWizard);
                 }
             }
-            /*
+            
             catch (FileNotFoundException) {
                 Console.WriteLine($"Error: The file '{filePath}' could not be found.");
             }
@@ -42,7 +42,7 @@ namespace DnD_Battle.Loaders {
                 // Catch any other exceptions that might occur
                 Console.WriteLine($"An unexpected error occurred: {ex.Message}");
             }
-           */
+           
         }
 
         private static void AddSpellToList(XElement spellElement, List<Spells> spellList) {
