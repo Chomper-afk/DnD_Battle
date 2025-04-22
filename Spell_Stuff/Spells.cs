@@ -42,7 +42,7 @@ namespace DnD_Battle.Spell_Stuff {
             Action_txt = action;
         }
 
-
+        public Leveling_rule Change {  get; set; }
         public string Name { get; }
         public int SpellSlot { get; }
         public int Action { get; }
