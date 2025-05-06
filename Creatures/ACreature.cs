@@ -43,6 +43,8 @@ namespace DnD_Battle.Creatures {
         public Dice Melee_attack { get; set; }
         public int SpellcastingModifier { get { return CHA.Modifier; } }
 
+        public List<Classes> Classes_ { get; set; } = new List<Classes>();
+
         public float RES_Pierce { get { return Times_V(Effects => Effects.RES_Pierce); } }
         public float RES_Blunt { get { return Times_V(Effects => Effects.RES_Blunt); } }
         public float RES_Sharp { get { return Times_V(Effects => Effects.RES_Sharp); } }

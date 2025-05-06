@@ -8,9 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using DnD_Battle.Spell_Stuff;
 using DnD_Battle.Creatures;
+using DnD_Battle.Loaders;
 
 namespace DnD_Battle {
     static class Settings {
+
+
 
         public static bool isComplex = false;
 
@@ -31,6 +34,12 @@ namespace DnD_Battle {
         public static Player User { get; set; } = new Player("Chomper", new Spellcasting([5,5,5,5,5,5,5,5,5,5] ));
 
         public static string Log { get; set; } = "";
+
+        public static void Initialize() {
+            foreach (string file in Directory.GetFiles(Path)) {
+                SpellLoader.LoadSpellsFromXml(file);
+                }
+            }
 
     }
 }

@@ -16,6 +16,7 @@ namespace DnD_Battle {
         Form1 form = new Form1() { TopLevel = false };
 
         private void MainForm_Load(object sender, EventArgs e) {
+            Settings.Initialize();
             MainPanel.Controls.Add(form);
             form.ReSize(MainPanel.Width, MainPanel.Height);
             form.Show();

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DnD_Battle.Creatures {
-    internal class Classes {
+    public class Classes {
         public int HitDice {  get; set; }
         public int[]? SpellSlots { get; set; }
         public string Name { get; set; }

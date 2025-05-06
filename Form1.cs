@@ -17,7 +17,7 @@ namespace DnD_Battle {
 
         public Form1() {
             InitializeComponent();
-        }
+            }
 
         int spell_selector = 0;
 
@@ -25,21 +25,16 @@ namespace DnD_Battle {
 
         private void Form1_Load(object sender, EventArgs e) {
 
-
-            foreach (string file in Directory.GetFiles(Settings.Path)) {
-                SpellLoader.LoadSpellsFromXml(file);
-            }
-
-            foreach (Spells s in Settings.SpellsWarlock) {
-                output.Text += s.Name + ", spellslot = " + s.SpellSlot + ", times = " + s.Times + "\r\n";
-            }
+            foreach(Spells S in Settings.User.Known_Spells) {
+                CB_Spells.Items.Add(S);
+                }
 
             enemy_name.Text = Test.Name;
             Player_Name.Text = Settings.User.Name;
             enemy_HP.Text = Test.HP_Check();
             Player_HP.Text = Settings.User.HP_Check();
 
-        }
+            }
 
         private void roll_Click(object sender, EventArgs e) {
             Settings.SpellsWarlock[spell_selector].Attack(Settings.User, Test);
@@ -52,51 +47,26 @@ namespace DnD_Battle {
 
             if (Test.CurrentHP == 0) {
                 enemy_name.Text = "DEAD";
-            }
+                }
 
-        }
+            }
 
         private void complex_Click(object sender, EventArgs e) {
             if (Settings.isComplex) {
                 Settings.isComplex = false;
-            }
+                }
             else {
                 Settings.isComplex = true;
+                }
             }
-        }
         private void info(int temp_spell) {
             attack.Text = Settings.SpellsWarlock[temp_spell].ToString();
             if (!roll.Enabled) {
                 roll.Enabled = true;
-            }
+                }
             spell_selected.Text = Settings.User.SpellSlots.SpellSlots[Settings.SpellsWarlock[temp_spell].SpellSlot] + " Spell slots";
-        }
+            }
 
-        private void spell1_Click(object sender, EventArgs e) {
-            spell_selected.Text = "Spell 1";
-            spell_selector = 0;
-            info(0);
-        }
-        private void spell2_Click(object sender, EventArgs e) {
-            spell_selected.Text = "Spell 2";
-            spell_selector = 1;
-            info(1);
-
-        }
-
-        private void spell3_Click(object sender, EventArgs e) {
-            spell_selected.Text = "Spell 3";
-            spell_selector = 2;
-            info(2);
-
-        }
-
-        private void spell4_Click(object sender, EventArgs e) {
-            spell_selected.Text = "Spell 4";
-            spell_selector = 3;
-            info(3);
-
-        }
 
         private void Next_Turn_Click(object sender, EventArgs e) {
             if ((Test.DEX.Modifier + Dice.Rolling(20, 1)) > Settings.User.AC) {
@@ -104,15 +74,15 @@ namespace DnD_Battle {
                 temp = Test.Melee_attack.Roll(Settings.isComplex);
                 Settings.User.Attack(temp);
                 Settings.Log += "\r\n" + Test.Name + "attacks " + Settings.User.Name + " for " + temp + " dmg";
-            }
+                }
             else {
                 Settings.Log += "\r\n" + Test.Name + " misses " + Settings.User.Name;
-            }
+                }
             Player_HP.Text = Settings.User.HP_Check();
             output.Text = Settings.Log;
             Settings.Actions = 1;
             Settings.B_Actions = 1;
-        }
+            }
 
         public void ReSize(int _width, int _height) {
             this.Width = _width;
@@ -139,21 +109,6 @@ namespace DnD_Battle {
             attack.Height = (int)(278 * scaleY);
             attack.Location = new Point((int)(13 * scaleX), (int)(359 * scaleY));
 
-            spell1.Width = (int)(59 * scaleX);
-            spell1.Height = (int)(66 * scaleY);
-            spell1.Location = new Point((int)(508 * scaleX), (int)(506 * scaleY));
-
-            spell2.Width = (int)(59 * scaleX);
-            spell2.Height = (int)(66 * scaleY);
-            spell2.Location = new Point((int)(573 * scaleX), (int)(506 * scaleY));
-
-            spell3.Width = (int)(59 * scaleX);
-            spell3.Height = (int)(66 * scaleY);
-            spell3.Location = new Point((int)(639 * scaleX), (int)(506 * scaleY));
-
-            spell4.Width = (int)(59 * scaleX);
-            spell4.Height = (int)(66 * scaleY);
-            spell4.Location = new Point((int)(704 * scaleX), (int)(506 * scaleY));
 
             spell_selected.Width = (int)(67 * scaleX);
             spell_selected.Height = (int)(73 * scaleY);
@@ -186,17 +141,39 @@ namespace DnD_Battle {
             Enemy_Info.Width = (int)(115 * scaleX);
             Enemy_Info.Height = (int)(39 * scaleY);
             Enemy_Info.Location = new Point((int)(1227 * scaleX), (int)(180 * scaleY));
-        }
+            }
 
         private void Player_Info_Click(object sender, EventArgs e) {
             Info Information = new Info(Settings.User);
             Information.Show();
-        }
+            }
 
         private void Enemy_Info_Click(object sender, EventArgs e) {
             Info Information = new Info(Test);
             Information.Show();
 
+            }
+
+        private void CB_Spells_SelectedIndexChanged(object sender, EventArgs e) {
+            Spells? temp;
+            if (CB_Spells.SelectedIndex != -1) {
+                attack.Enabled = true;
+                temp = Settings.User.Known_Spells[CB_Spells.SelectedIndex];
+                }
+            else {
+                attack.Enabled = false;
+                temp = null;
+                }
+
+            CB_SS.Items.Clear();
+            CB_SS.SelectedIndex = -1;
+            if (temp != null) {
+                for(int i = 0; i <= temp.SpellSlot; i++) {
+                    CB_SS.Items.Add(i.ToString());
+                    }
+
+                }
+
+            }
         }
     }
-}

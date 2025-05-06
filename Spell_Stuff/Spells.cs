@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Media;
+using System.Security.Cryptography.Pkcs;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -42,15 +43,38 @@ namespace DnD_Battle.Spell_Stuff {
             Action_txt = action;
         }
 
-        public Leveling_rule Change {  get; set; }
+        public Leveling_rule Change {  get; set; } = new Leveling_rule();
         public string Name { get; }
         public int SpellSlot { get; }
         public int Action { get; }
         private string Action_txt { get; set; }
-        public int Times;
+        public int Times { get; set; }
 
-        public void Attack(ACreature P1, ACreature enemy) {
+        public void Attack(ACreature P1, ACreature enemy, int? ss = null) {
             int temp;
+            int temp_Level = P1.Classes_.Count;
+            int times_Extra = 0;
+            int Temp_Attack = 0;
+            int ss_Times = 0;
+            if(ss == null)
+                ss = SpellSlot;
+
+            if (Change.SpellSlot_Steps != 0) {
+                for (int? i = SpellSlot; i < ss; i += Change.SpellSlot_Steps) {
+                    ss_Times++;
+                    }
+                }
+
+            foreach (int I in Change.Times_Steps) {
+                if (I >= temp_Level)
+                    times_Extra++;
+                }
+
+            foreach(int I in Change.DMG_Steps) {
+                if(I>=temp_Level)
+                    Temp_Attack++;
+                }
+
             if (P1.SpellSlots.SpellSlots[SpellSlot] > 0 || SpellSlot == 0) {
                 if (!(Action == 1 && Settings.Actions <= 0 || Action == 2 && Settings.B_Actions <= 0)) {
                     P1.SpellSlots.SpellSlots[SpellSlot]--;
@@ -62,10 +86,16 @@ namespace DnD_Battle.Spell_Stuff {
                             Settings.B_Actions--;
                             break;
                     }
-                    for (int i = 0; i < Times; i++) {
+                    for (int i = 0; i < Times + times_Extra; i++) {
                         if (Dice.Rolling(20, 1) + P1.SpellcastingModifier > enemy.AC) {
                             temp = Attack(enemy);
-                            enemy.CurrentHP -= P1.SpellcastingModifier;
+                            for (int j = 0; j < Temp_Attack; j++) {
+                                temp += Change.DMGPerLevelStep.Attack(enemy);
+                                }
+                            for(int j = 0; j < ss_Times; j++) {
+                                temp += Change.DMGPerSpellSlot.Attack(enemy);
+                                }
+
                             Settings.Log += "\r\n" + P1.Name + " hits " + enemy.Name + "for a total of " + (temp + P1.SpellcastingModifier) + "DMG";
                         }
                         else {
