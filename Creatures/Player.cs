@@ -36,6 +36,19 @@ namespace DnD_Battle.Creatures {
 
         public List<Spells> Known_Spells = new List<Spells>();
 
-        public override int BaseHP { get { int temp = baseHP_; if (Classes.Count > 0) { temp = 0; foreach (Classes C in Classes) { temp += C.HitDice + CON.Modifier; } } return temp; } set => baseHP_ = value; }
+        public override int BaseHP {
+            get { 
+                int temp = baseHP_;
+                if (Classes.Count > 0) { 
+                    temp = 0;
+                    foreach (Classes C in Classes) {
+                        temp += C.HitDice + CON.Modifier; 
+                    } 
+                } 
+                return temp; 
+            } 
+            set => baseHP_ = value;
+        }
+
     }
 }

@@ -19,31 +19,46 @@ namespace DnD_Battle {
             InitializeComponent();
             }
 
-        int spell_selector = 0;
-
         Creature Test = new Creature("testanimal", new Spellcasting(), 4, 4, 4, 4, 4, 4, 5, 20, 20, new Dice(0, 0, 0, 0, 2, 0, 0));
 
         private void Form1_Load(object sender, EventArgs e) {
 
+            ReSize(Width, Height);
+
             foreach(Spells S in Settings.User.Known_Spells) {
-                CB_Spells.Items.Add(S);
+                LB_Spells.Items.Add(S);
                 }
 
             enemy_name.Text = Test.Name;
             Player_Name.Text = Settings.User.Name;
             enemy_HP.Text = Test.HP_Check();
             Player_HP.Text = Settings.User.HP_Check();
+            SS_Data_Refresh();
 
             }
 
+        private void SS_Data_Refresh() {
+            int i = 0;
+            LB_SpellSlots.Items.Clear();
+            foreach(int I in Settings.User.SpellSlots.SpellSlots) {
+                if(i != 0) {
+                    LB_SpellSlots.Items.Add(i + "|" + I);
+                }
+                i++;
+            }
+        }
+
+
         private void roll_Click(object sender, EventArgs e) {
-            Settings.SpellsWarlock[spell_selector].Attack(Settings.User, Test);
+            Spells temp = LB_Spells.SelectedItem as Spells;
+            
+            temp.Attack(Settings.User, Test);
 
             enemy_HP.Text = Test.HP_Check();
 
             output.Text = Settings.Log;
 
-            info(spell_selector);
+            SS_Data_Refresh();
 
             if (Test.CurrentHP == 0) {
                 enemy_name.Text = "DEAD";
@@ -59,14 +74,6 @@ namespace DnD_Battle {
                 Settings.isComplex = true;
                 }
             }
-        private void info(int temp_spell) {
-            attack.Text = Settings.SpellsWarlock[temp_spell].ToString();
-            if (!roll.Enabled) {
-                roll.Enabled = true;
-                }
-            spell_selected.Text = Settings.User.SpellSlots.SpellSlots[Settings.SpellsWarlock[temp_spell].SpellSlot] + " Spell slots";
-            }
-
 
         private void Next_Turn_Click(object sender, EventArgs e) {
             if ((Test.DEX.Modifier + Dice.Rolling(20, 1)) > Settings.User.AC) {
@@ -105,15 +112,22 @@ namespace DnD_Battle {
             complex.Height = (int)(84 * scaleY);
             complex.Location = new Point((int)(1243 * scaleX), (int)(554 * scaleY));
 
-            attack.Width = (int)(487 * scaleX);
-            attack.Height = (int)(278 * scaleY);
-            attack.Location = new Point((int)(13 * scaleX), (int)(359 * scaleY));
+            LB_Items.Width = (int)(487 * scaleX);
+            LB_Items.Height = (int)(278 * scaleY);
+            LB_Items.Location = new Point((int)(13 * scaleX), (int)(359 * scaleY));
 
+            LB_Spells.Width = (int)(290 * scaleX);
+            LB_Spells.Height = (int)(120 * scaleY);
+            LB_Spells.Location = new Point((int)(510 * scaleX), (int)(520 * scaleY));
 
-            spell_selected.Width = (int)(67 * scaleX);
-            spell_selected.Height = (int)(73 * scaleY);
-            spell_selected.Location = new Point((int)(344 * scaleX), (int)(278 * scaleY));
+            LB_SS.Width = (int)(68 * scaleX);
+            LB_SS.Height = (int)(79 * scaleY);
+            LB_SS.Location = new Point((int)(432 * scaleX), (int)(271 * scaleY));
 
+            LB_SpellSlots.Width = (int)(120 * scaleX);
+            LB_SpellSlots.Height = (int)(200 * scaleY);
+            LB_SpellSlots.Location = new Point((int)(280 * scaleX), (int)(150 * scaleY));
+            
             enemy_name.Width = (int)(220 * scaleX);
             enemy_name.Height = (int)(53 * scaleY);
             enemy_name.Location = new Point((int)(1132 * scaleX), (int)(55 * scaleY));
@@ -154,26 +168,32 @@ namespace DnD_Battle {
 
             }
 
-        private void CB_Spells_SelectedIndexChanged(object sender, EventArgs e) {
+        private void LB_Spells_SelectedIndexChanged(object sender, EventArgs e) {
             Spells? temp;
-            if (CB_Spells.SelectedIndex != -1) {
-                attack.Enabled = true;
-                temp = Settings.User.Known_Spells[CB_Spells.SelectedIndex];
+            if (LB_Spells.SelectedItem != null) {
+                roll.Enabled = true;
+                temp = (Spells)LB_Spells.SelectedItem;
                 }
             else {
-                attack.Enabled = false;
+                roll.Enabled = false;
                 temp = null;
                 }
 
-            CB_SS.Items.Clear();
-            CB_SS.SelectedIndex = -1;
+            LB_SS.Items.Clear();
             if (temp != null) {
-                for(int i = 0; i <= temp.SpellSlot; i++) {
-                    CB_SS.Items.Add(i.ToString());
-                    }
-
+                if (temp.SpellSlot == 0) {
+                    LB_SS.Items.Add(0);
                 }
-
+                else {
+                    for (int i = temp.SpellSlot; i <= 10; i++) {
+                        LB_SS.Items.Add(i.ToString());
+                    }
+                }
+            LB_SS.SelectedIndex = 0;
             }
+
         }
+
+
     }
+}

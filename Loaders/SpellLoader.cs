@@ -16,13 +16,9 @@ namespace DnD_Battle.Loaders {
                 {
                 XDocument doc = XDocument.Load(filePath);
 
-                // Load Warlock Spells
-                foreach (var spellElement in doc.Descendants("WarlockSpells").Descendants("Spell")) {
-                    AddSpellToList(spellElement, Settings.SpellsWarlock);
-                }
-                // Load Wizard Spells
-                foreach (var spellElement in doc.Descendants("WizardSpells").Descendants("Spell")) {
-                    AddSpellToList(spellElement, Settings.SpellsWizard);
+
+                foreach (var spellElement in doc.Descendants("Spell")) {
+                    AddSpellToList(spellElement);
                 }
             }
             
@@ -45,7 +41,7 @@ namespace DnD_Battle.Loaders {
            
         }
 
-        private static void AddSpellToList(XElement spellElement, List<Spells> spellList) {
+        private static void AddSpellToList(XElement spellElement) {
             if (new[] { "SpellSlot", "Name", "Times", "Action" }.Any(e => spellElement.Element(e) != null)) {
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
                 int spellSlot = int.Parse(spellElement.Element("SpellSlot").Value);
@@ -60,7 +56,18 @@ namespace DnD_Battle.Loaders {
 
                 // Create the Spells object and add it to the respective list
                 Spells spell = new Spells(name, spellSlot, times, action, _DMG);
-                spellList.Add(spell);
+                foreach(XElement E in spellElement.Descendants("Class").Descendants("S")) {
+                    switch (E.Value) {
+                        case "Warlock":
+                            Settings.SpellsWarlock.Add(spell);
+                            break;
+                        case "Wizard":
+                            Settings.SpellsWizard.Add(spell);
+                            break;
+                        default:
+                            throw new Exception("unkonw spell class");
+                    }
+                }
             }
             
 

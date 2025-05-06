@@ -116,19 +116,32 @@ namespace DnD_Battle.Spell_Stuff {
                 Console.WriteLine("Not enough Spell Slots");
             }
         }
-        string element_output(Dice outputting) {
-            string s = "";
-            s += outputting.D4 + "D4 + " + outputting.D6 + "D6 + " + outputting.D8 + "D8 + " + outputting.D10 + "D10 + " + outputting.D12 + "D12 + " + outputting.D20 + "D20 + " + outputting.D1 + "\r\n";
-            return s;
+        public Spells Clone() {
+            return new Spells(
+                name: this.Name,
+                spellSlot: this.SpellSlot,
+                times: this.Times,
+                action: this.Action_txt,
+                heal: this.Heal,
+                piercing: this.Pierce,
+                blunt: this.Blunt,
+                slashing: this.Slash,
+                acid: this.Acid,
+                cold: this.Cold,
+                fire: this.Fire,
+                force: this.Force,
+                lightning: this.Lightning,
+                necrotic: this.Necrotic,
+                poison: this.Poison,
+                psychic: this.Psychic,
+                radiant: this.Radiant,
+                thunder: this.Thunder
+            );
         }
 
-        public override string ToString() {
-            string s = "2";
 
-            s = Name + "\r\nSpellslot: " + SpellSlot + "\r\nTimes: " + Times + "\r\nAction/Bonus Action: " + Action_txt + "\r\n";
-            s += "Blunt = " + element_output(Blunt) + "Slashing = " + element_output(Slash);
-            s += "Piercing = " + element_output(Pierce);
-            return s;
+        public override string ToString() {
+            return Action_txt + "|" + Name;
         }
 
     }

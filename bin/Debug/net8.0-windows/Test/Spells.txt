@@ -1,5 +1,4 @@
 <SpellsList>
-    <WarlockSpells>
         <Spell>
             <Name>Eldridge blast</Name>
             <SpellSlot>0</SpellSlot>
@@ -10,6 +9,8 @@
 <D10>1</D10>
 </Force>
 </DMG>
+<Class>
+<S>Warlock</S>
+</Class>
         </Spell>
-    </WarlockSpells>
 </SpellsList>

@@ -31,7 +31,7 @@ namespace DnD_Battle {
         public static int Stat_MIN { get; set; } = 0;
         public static int Stat_MAX { get; set; } = 100;
         
-        public static Player User { get; set; } = new Player("Chomper", new Spellcasting([5,5,5,5,5,5,5,5,5,5] ));
+        public static Player User { get; set; } = new Player("Chomper", new Spellcasting([5, 5, 5, 5, 5, 5, 5, 5, 5, 5]));
 
         public static string Log { get; set; } = "";
 
@@ -39,6 +39,9 @@ namespace DnD_Battle {
             foreach (string file in Directory.GetFiles(Path)) {
                 SpellLoader.LoadSpellsFromXml(file);
                 }
+            foreach(Spells S  in SpellsWarlock) {
+                User.Known_Spells.Add(S.Clone());
+            }
             }
 
     }

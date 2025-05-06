@@ -1,5 +1,4 @@
 <SpellsList>
-    <WarlockSpells>
         <Spell>
             <Name>Shadow Pierce</Name>
             <SpellSlot>3</SpellSlot>
@@ -16,8 +15,14 @@
                 <D8>1</D8>
             </Slashing>
 </DMG>
+<Class>
+<S>Warlock</S>
+</Class>
         </Spell>
         <Spell>
+<Class>
+<S>Warlock</S>
+</Class>
             <Name>Crushing Slice</Name>
     <SpellSlot>2</SpellSlot>
     <Times>1</Times>
@@ -33,5 +38,4 @@
     </Slashing>
 </DMG>
         </Spell>
-    </WarlockSpells>
 </SpellsList>
