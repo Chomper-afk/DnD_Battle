@@ -11,13 +11,15 @@ using System.IO;
 using DnD_Battle.Spell_Stuff;
 using DnD_Battle.Creatures;
 using DnD_Battle.Loaders;
+using System.Reflection.Emit;
+using DnD_Battle.Creatures.Gear_Stuff;
 
 namespace DnD_Battle {
     public partial class Form1 : Form {
 
         public Form1() {
             InitializeComponent();
-            }
+        }
 
         Creature Test = new Creature("testanimal", new Spellcasting(), 4, 4, 4, 4, 4, 4, 5, 20, 20, new Dice(0, 0, 0, 0, 2, 0, 0));
 
@@ -25,33 +27,38 @@ namespace DnD_Battle {
 
             ReSize(Width, Height);
 
-            foreach(Spells S in Settings.User.Known_Spells) {
+            foreach (Spells S in Settings.User.Known_Spells) {
                 LB_Spells.Items.Add(S);
-                }
+            }
 
             enemy_name.Text = Test.Name;
             Player_Name.Text = Settings.User.Name;
             enemy_HP.Text = Test.HP_Check();
             Player_HP.Text = Settings.User.HP_Check();
             SS_Data_Refresh();
-
-            }
+            Items_Data_Refresh();
+        }
 
         private void SS_Data_Refresh() {
             int i = 0;
             LB_SpellSlots.Items.Clear();
-            foreach(int I in Settings.User.SpellSlots.SpellSlots) {
-                if(i != 0) {
+            foreach (int I in Settings.User.SpellSlots.SpellSlots) {
+                if (i != 0) {
                     LB_SpellSlots.Items.Add(i + "|" + I);
                 }
                 i++;
             }
         }
-
+        private void Items_Data_Refresh() {
+            LB_Items.Items.Clear();
+            foreach (AItems I in Settings.User.Items) {
+                LB_Items.Items.Add(I);
+            }
+        }
 
         private void roll_Click(object sender, EventArgs e) {
             Spells temp = LB_Spells.SelectedItem as Spells;
-            
+
             temp.Attack(Settings.User, Test);
 
             enemy_HP.Text = Test.HP_Check();
@@ -62,18 +69,18 @@ namespace DnD_Battle {
 
             if (Test.CurrentHP == 0) {
                 enemy_name.Text = "DEAD";
-                }
-
             }
+
+        }
 
         private void complex_Click(object sender, EventArgs e) {
             if (Settings.isComplex) {
                 Settings.isComplex = false;
-                }
+            }
             else {
                 Settings.isComplex = true;
-                }
             }
+        }
 
         private void Next_Turn_Click(object sender, EventArgs e) {
             if ((Test.DEX.Modifier + Dice.Rolling(20, 1)) > Settings.User.AC) {
@@ -81,15 +88,15 @@ namespace DnD_Battle {
                 temp = Test.Melee_attack.Roll(Settings.isComplex);
                 Settings.User.Attack(temp);
                 Settings.Log += "\r\n" + Test.Name + "attacks " + Settings.User.Name + " for " + temp + " dmg";
-                }
+            }
             else {
                 Settings.Log += "\r\n" + Test.Name + " misses " + Settings.User.Name;
-                }
+            }
             Player_HP.Text = Settings.User.HP_Check();
             output.Text = Settings.Log;
             Settings.Actions = 1;
             Settings.B_Actions = 1;
-            }
+        }
 
         public void ReSize(int _width, int _height) {
             this.Width = _width;
@@ -127,7 +134,7 @@ namespace DnD_Battle {
             LB_SpellSlots.Width = (int)(120 * scaleX);
             LB_SpellSlots.Height = (int)(200 * scaleY);
             LB_SpellSlots.Location = new Point((int)(280 * scaleX), (int)(150 * scaleY));
-            
+
             enemy_name.Width = (int)(220 * scaleX);
             enemy_name.Height = (int)(53 * scaleY);
             enemy_name.Location = new Point((int)(1132 * scaleX), (int)(55 * scaleY));
@@ -155,29 +162,29 @@ namespace DnD_Battle {
             Enemy_Info.Width = (int)(115 * scaleX);
             Enemy_Info.Height = (int)(39 * scaleY);
             Enemy_Info.Location = new Point((int)(1227 * scaleX), (int)(180 * scaleY));
-            }
+        }
 
         private void Player_Info_Click(object sender, EventArgs e) {
             Info Information = new Info(Settings.User);
             Information.Show();
-            }
+        }
 
         private void Enemy_Info_Click(object sender, EventArgs e) {
             Info Information = new Info(Test);
             Information.Show();
 
-            }
+        }
 
         private void LB_Spells_SelectedIndexChanged(object sender, EventArgs e) {
             Spells? temp;
             if (LB_Spells.SelectedItem != null) {
                 roll.Enabled = true;
                 temp = (Spells)LB_Spells.SelectedItem;
-                }
+            }
             else {
                 roll.Enabled = false;
                 temp = null;
-                }
+            }
 
             LB_SS.Items.Clear();
             if (temp != null) {
@@ -189,11 +196,63 @@ namespace DnD_Battle {
                         LB_SS.Items.Add(i.ToString());
                     }
                 }
-            LB_SS.SelectedIndex = 0;
+                LB_SS.SelectedIndex = 0;
             }
 
         }
 
+        private int lastIndex = -1;
+        private AItems? contextMenuTargetItem = null;
 
+        private void Mouse_Move(object sender, MouseEventArgs e) {
+            int index = LB_Items.IndexFromPoint(e.Location);
+            if (index >= 0 && index != lastIndex) {
+                AItems Item = (AItems)LB_Items.Items[index];
+                Items.SetToolTip(LB_Items, $"{Item.Description}");
+                lastIndex = index;
+            }
+            else if (index == -1) {
+                lastIndex = -1;
+            }
+
+        }
+
+        private void Mouse_Down(object sender, MouseEventArgs e) {
+            if (e.Button == MouseButtons.Right) {
+                int index = LB_Items.IndexFromPoint(e.Location);
+                if (index != ListBox.NoMatches) {
+                    contextMenuTargetItem = (AItems)LB_Items.Items[index];
+                }
+                else {
+                    contextMenuTargetItem = null;
+                }
+            }
+
+        }
+
+        private void CMS_Use_Self_Click(object sender, EventArgs e) {
+            contextMenuTargetItem.Use_Sefl(Settings.User);
+            if (contextMenuTargetItem.Amount == 0) {
+                Settings.User.Items.Remove(contextMenuTargetItem);
+            }
+            Items_Data_Refresh();
+        }
+
+        private void CMS_Use_Target_Click(object sender, EventArgs e) {
+            contextMenuTargetItem.Use_Other(Settings.User, Test);
+            if (contextMenuTargetItem.Amount == 0) {
+                Settings.User.Items.Remove(contextMenuTargetItem);
+            }
+            Items_Data_Refresh();
+
+        }
+
+        private void CMS_Use_Special_Click(object sender, EventArgs e) {
+            contextMenuTargetItem.Use_Special(Settings.User);
+            if (contextMenuTargetItem.Amount == 0) {
+                Settings.User.Items.Remove(contextMenuTargetItem);
+            }
+            Items_Data_Refresh();
+        }
     }
 }

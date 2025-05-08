@@ -127,8 +127,16 @@ namespace DnD_Battle.Creatures {
             if(Effects.Count >0){
                 foreach (Effect E in Effects) {
                     int temp = E.Decay();
+                    Attack(E.DMG.Attack(this, E.Is_Magical));
                     if (temp == 0) Effects.Remove(E);
                 }
+            }
+        }
+        public void Effect_Decay(Effect E) {
+            if (Effects.Contains(E)) {
+                E.Counter--;
+                Attack(E.DMG.Attack(this,E.Is_Magical));
+                if (E.Counter == 0) Effects.Remove(E);
             }
         }
 

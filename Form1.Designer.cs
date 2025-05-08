@@ -27,6 +27,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            components = new System.ComponentModel.Container();
             roll = new Button();
             output = new TextBox();
             complex = new Button();
@@ -41,6 +42,12 @@
             LB_SpellSlots = new ListBox();
             LB_Spells = new ListBox();
             LB_Items = new ListBox();
+            Use_Items = new ContextMenuStrip(components);
+            CMS_Use_Self = new ToolStripMenuItem();
+            CMS_Use_Target = new ToolStripMenuItem();
+            CMS_Use_Special = new ToolStripMenuItem();
+            Items = new ToolTip(components);
+            Use_Items.SuspendLayout();
             SuspendLayout();
             // 
             // roll
@@ -181,12 +188,43 @@
             // 
             // LB_Items
             // 
+            LB_Items.ContextMenuStrip = Use_Items;
             LB_Items.FormattingEnabled = true;
             LB_Items.ItemHeight = 25;
             LB_Items.Location = new Point(13, 365);
             LB_Items.Name = "LB_Items";
             LB_Items.Size = new Size(491, 279);
             LB_Items.TabIndex = 21;
+            LB_Items.MouseDown += Mouse_Down;
+            LB_Items.MouseMove += Mouse_Move;
+            // 
+            // Use_Items
+            // 
+            Use_Items.ImageScalingSize = new Size(24, 24);
+            Use_Items.Items.AddRange(new ToolStripItem[] { CMS_Use_Self, CMS_Use_Target, CMS_Use_Special });
+            Use_Items.Name = "Use_Items";
+            Use_Items.Size = new Size(172, 100);
+            // 
+            // CMS_Use_Self
+            // 
+            CMS_Use_Self.Name = "CMS_Use_Self";
+            CMS_Use_Self.Size = new Size(171, 32);
+            CMS_Use_Self.Text = "Use Self";
+            CMS_Use_Self.Click += CMS_Use_Self_Click;
+            // 
+            // CMS_Use_Target
+            // 
+            CMS_Use_Target.Name = "CMS_Use_Target";
+            CMS_Use_Target.Size = new Size(171, 32);
+            CMS_Use_Target.Text = "Use Enemy";
+            CMS_Use_Target.Click += CMS_Use_Target_Click;
+            // 
+            // CMS_Use_Special
+            // 
+            CMS_Use_Special.Name = "CMS_Use_Special";
+            CMS_Use_Special.Size = new Size(171, 32);
+            CMS_Use_Special.Text = "Special";
+            CMS_Use_Special.Click += CMS_Use_Special_Click;
             // 
             // Form1
             // 
@@ -214,6 +252,7 @@
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
+            Use_Items.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -234,6 +273,11 @@
         private ListBox LB_SpellSlots;
         private ListBox LB_Spells;
         private ListBox LB_Items;
+        private ContextMenuStrip Use_Items;
+        private ToolStripMenuItem CMS_Use_Self;
+        private ToolStripMenuItem CMS_Use_Target;
+        private ToolStripMenuItem CMS_Use_Special;
+        private ToolTip Items;
     }
 }
 

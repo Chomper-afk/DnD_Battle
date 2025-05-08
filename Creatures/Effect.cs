@@ -57,17 +57,18 @@ namespace DnD_Battle.Creatures {
         public float M_RES_Psychic { get; set; } = 1;
         public float M_RES_Radiant { get; set; } = 1;
         public float M_RES_Thunder { get; set; } = 1;
-
+        public DMG DMG { get; set; }
         public int Counter { get; set; }
+        public bool Is_Magical {  get; set; }
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         public Effect(Effect _Effect) {
-            foreach (PropertyInfo property in typeof(Creature).GetProperties()) {
+            foreach (PropertyInfo property in typeof(Effect).GetProperties()) {
                 property.SetValue(this, property.GetValue(_Effect));
             }
         }
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
-        public Effect(string _Name, int _Counter = -1, int _STR = 0, int _DEX = 0, int _CON = 0, int _INT = 0, int _WIS = 0, int _CHA = 0) {
+        public Effect(string _Name, int _Counter = -1, int _STR = 0, int _DEX = 0, int _CON = 0, int _INT = 0, int _WIS = 0, int _CHA = 0, DMG? dMG = null, bool is_Magical = false) {
             Name = _Name;
             Counter = _Counter;
             STR = _STR;
@@ -76,6 +77,8 @@ namespace DnD_Battle.Creatures {
             INT = _INT;
             WIS = _WIS;
             CHA = _CHA;
+            DMG = dMG ?? new DMG();
+            Is_Magical = is_Magical;
         }
 
         /// <summary>
@@ -87,12 +90,13 @@ namespace DnD_Battle.Creatures {
         /// <returns></returns>
         public int Decay() {
             if (Counter >= 0) {
-                Counter--;
                 if (Counter == 0) return 0;
+                Counter--;
                 return 1;
             }
             return -1;
         }
+
         public override string ToString() {
             string s = Name + "\r\n"
                 + "Stat change: \r\n";

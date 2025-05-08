@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using DnD_Battle.Spell_Stuff;
 using DnD_Battle.Creatures;
 using DnD_Battle.Loaders;
+using DnD_Battle.Creatures.Gear_Stuff;
 
 namespace DnD_Battle {
     static class Settings {
@@ -42,7 +43,13 @@ namespace DnD_Battle {
             foreach(Spells S  in SpellsWarlock) {
                 User.Known_Spells.Add(S.Clone());
             }
-            }
+
+            User.Items.Add(new Potions("test", "This is test item, if you see this its ether early in dev or something got messed up", 2));
+            User.Items.Add(new Potions("test2", "This is test2 item, if you see this its ether early in dev or something got messed up", 3,2));
+            User.Items.Add(new Potions("test3", "This is test3 item, if you see this its ether early in dev or something got messed up", 4));
+            User.Items.Add(new Potions("Boost", "Booster, gives +1 in every stat", 100,1,new Effect("Booster",3,1,1,1,1,1,1)));
+
+        }
 
     }
 }

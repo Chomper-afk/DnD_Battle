@@ -87,7 +87,7 @@ namespace DnD_Battle.Spell_Stuff {
                             break;
                     }
                     for (int i = 0; i < Times + times_Extra; i++) {
-                        if (Dice.Rolling(20, 1) + P1.SpellcastingModifier > enemy.AC) {
+                        if (Dice.Rolling(20, 1) + P1.SpellcastingModifier >= enemy.AC) {
                             temp = Attack(enemy);
                             for (int j = 0; j < Temp_Attack; j++) {
                                 temp += Change.DMGPerLevelStep.Attack(enemy);

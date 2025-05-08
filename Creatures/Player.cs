@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DnD_Battle.Creatures.Gear_Stuff;
 using DnD_Battle.Spell_Stuff;
 
 namespace DnD_Battle.Creatures {
@@ -35,6 +36,7 @@ namespace DnD_Battle.Creatures {
         public List<Classes> Classes;
 
         public List<Spells> Known_Spells = new List<Spells>();
+        public List<AItems> Items = new List<AItems>();
 
         public override int BaseHP {
             get { 
