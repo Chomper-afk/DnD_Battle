@@ -20,8 +20,13 @@ namespace DnD_Battle {
             MainPanel.Controls.Add(form);
             form.ReSize(MainPanel.Width, MainPanel.Height);
             form.Show();
+            form.FormClosed += Form_FormClosed;
         }
 
+        private void Form_FormClosed(object? sender, FormClosedEventArgs e) {
+            MessageBox.Show("you win");
+            this.Close();
+        }
 
         private void MainForm_SizeChanged(object sender, EventArgs e) {
             form.ReSize(MainPanel.Width, MainPanel.Height);

@@ -24,6 +24,7 @@ namespace DnD_Battle.Creatures.Gear_Stuff {
         public Effect? Effect { get; set;}
         public override void Use_Other(ACreature User, ACreature Target) {
             if (!(Action == 1 && Settings.Actions <= 0 || Action == 2 && Settings.B_Actions <= 0)) {
+                Amount--;
                 switch (Action) {
                     case 1:
                         Settings.Actions--;

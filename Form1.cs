@@ -38,7 +38,6 @@ namespace DnD_Battle {
             SS_Data_Refresh();
             Items_Data_Refresh();
         }
-
         private void SS_Data_Refresh() {
             int i = 0;
             LB_SpellSlots.Items.Clear();
@@ -59,7 +58,7 @@ namespace DnD_Battle {
         private void roll_Click(object sender, EventArgs e) {
             Spells temp = LB_Spells.SelectedItem as Spells;
 
-            temp.Attack(Settings.User, Test);
+            temp.Attack(Settings.User, Test, int.Parse((string)LB_SS.SelectedItem));
 
             enemy_HP.Text = Test.HP_Check();
 
@@ -69,21 +68,12 @@ namespace DnD_Battle {
 
             if (Test.CurrentHP == 0) {
                 enemy_name.Text = "DEAD";
+                this.Close();
             }
 
         }
-
-        private void complex_Click(object sender, EventArgs e) {
-            if (Settings.isComplex) {
-                Settings.isComplex = false;
-            }
-            else {
-                Settings.isComplex = true;
-            }
-        }
-
         private void Next_Turn_Click(object sender, EventArgs e) {
-            if ((Test.DEX.Modifier + Dice.Rolling(20, 1)) > Settings.User.AC) {
+            if ((Test.DEX.Modifier + Dice.Rolling(20, 1)) >= Settings.User.AC) {
                 int temp;
                 temp = Test.Melee_attack.Roll(Settings.isComplex);
                 Settings.User.Attack(temp);
@@ -114,10 +104,6 @@ namespace DnD_Battle {
             output.Width = (int)(601 * scaleX);
             output.Height = (int)(398 * scaleY);
             output.Location = new Point((int)(508 * scaleX), (int)(100 * scaleY));
-
-            complex.Width = (int)(76 * scaleX);
-            complex.Height = (int)(84 * scaleY);
-            complex.Location = new Point((int)(1243 * scaleX), (int)(554 * scaleY));
 
             LB_Items.Width = (int)(487 * scaleX);
             LB_Items.Height = (int)(278 * scaleY);

@@ -66,18 +66,18 @@ namespace DnD_Battle.Spell_Stuff {
                 }
 
             foreach (int I in Change.Times_Steps) {
-                if (I >= temp_Level)
+                if (I <= temp_Level)
                     times_Extra++;
                 }
 
             foreach(int I in Change.DMG_Steps) {
-                if(I>=temp_Level)
+                if(I <=temp_Level)
                     Temp_Attack++;
                 }
 
-            if (P1.SpellSlots.SpellSlots[SpellSlot] > 0 || SpellSlot == 0) {
+            if (P1.SpellSlots.SpellSlots[(int)ss] > 0 || SpellSlot == 0) {
                 if (!(Action == 1 && Settings.Actions <= 0 || Action == 2 && Settings.B_Actions <= 0)) {
-                    P1.SpellSlots.SpellSlots[SpellSlot]--;
+                    P1.SpellSlots.SpellSlots[(int)ss]--;
                     switch (Action) {
                         case 1:
                             Settings.Actions--;
@@ -112,7 +112,7 @@ namespace DnD_Battle.Spell_Stuff {
                 }
             }
             else {
-                Settings.Log += "\r\n" + P1.Name + " doesnt have enough spell slots of level " + SpellSlot;
+                Settings.Log += "\r\n" + P1.Name + " doesnt have enough spell slots of level " + ss;
                 Console.WriteLine("Not enough Spell Slots");
             }
         }

@@ -21,12 +21,6 @@ namespace DnD_Battle.Creatures {
                     list.Add(C.Name, 0);
                     }
 
-                if(C.Spells != null) {
-                    foreach(Spells S in C.Spells[list[C.Name]].Spells) {
-                        Known_Spells.Add(S);
-                        }
-                    }
-
                 }
 
             }

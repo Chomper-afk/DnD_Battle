@@ -27,8 +27,6 @@
             LB_Stats = new ListBox();
             LB_Effects = new ListBox();
             TB_Effect_Info = new TextBox();
-            button1 = new Button();
-            button2 = new Button();
             SuspendLayout();
             // 
             // TB_Name
@@ -37,7 +35,7 @@
             TB_Name.Multiline = true;
             TB_Name.Name = "TB_Name";
             TB_Name.ReadOnly = true;
-            TB_Name.Size = new Size(509, 134);
+            TB_Name.Size = new Size(503, 134);
             TB_Name.TabIndex = 0;
             // 
             // LB_Stats
@@ -47,7 +45,7 @@
             LB_Stats.Location = new Point(12, 152);
             LB_Stats.MultiColumn = true;
             LB_Stats.Name = "LB_Stats";
-            LB_Stats.Size = new Size(295, 154);
+            LB_Stats.Size = new Size(503, 204);
             LB_Stats.TabIndex = 1;
             // 
             // LB_Effects
@@ -68,36 +66,14 @@
             TB_Effect_Info.Multiline = true;
             TB_Effect_Info.Name = "TB_Effect_Info";
             TB_Effect_Info.ReadOnly = true;
-            TB_Effect_Info.Size = new Size(488, 369);
+            TB_Effect_Info.Size = new Size(495, 369);
             TB_Effect_Info.TabIndex = 3;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(373, 152);
-            button1.Name = "button1";
-            button1.Size = new Size(135, 106);
-            button1.TabIndex = 4;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(373, 288);
-            button2.Name = "button2";
-            button2.Size = new Size(135, 75);
-            button2.TabIndex = 5;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
             // 
             // Info
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(533, 995);
-            Controls.Add(button2);
-            Controls.Add(button1);
             Controls.Add(TB_Effect_Info);
             Controls.Add(LB_Effects);
             Controls.Add(LB_Stats);
@@ -116,7 +92,5 @@
         private ListBox LB_Stats;
         private ListBox LB_Effects;
         private TextBox TB_Effect_Info;
-        private Button button1;
-        private Button button2;
     }
 }

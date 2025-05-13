@@ -21,14 +21,8 @@ namespace DnD_Battle.Creatures {
             if (Subject == null) throw new Exception("Something seriusly went wrong");
         }
 
-        private void button1_Click(object sender, EventArgs e) {
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
-            Subject.Effects.Add(new Effect("Testing Effect, + 20 every stat",-1, 20, 20, 20, 20, 20, 20));
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
-            Data_Refresh();
-        }
         private void Data_Refresh() {
-            TB_Name.Text = Subject.Name;
+            TB_Name.Text = Subject.Name + "\r\n" + Subject.HP_Check();
             LB_Stats_Write();
             LB_Effects_Write();
         }
@@ -67,13 +61,6 @@ namespace DnD_Battle.Creatures {
             }
         }
 
-        private void button2_Click(object sender, EventArgs e) {
-            if(LB_Effects.SelectedIndex != -1) {
-                Subject.Effects.Remove(Subject.Effects[LB_Effects.SelectedIndex]);
-                LB_Effects_Write();
-                TB_Effect_Info.Text = "";
-                LB_Stats_Write();
-            }
-        }
+
     }
 }

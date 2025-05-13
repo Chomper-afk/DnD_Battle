@@ -30,7 +30,6 @@
             components = new System.ComponentModel.Container();
             roll = new Button();
             output = new TextBox();
-            complex = new Button();
             enemy_name = new TextBox();
             enemy_HP = new TextBox();
             Next_Turn = new Button();
@@ -74,18 +73,6 @@
             output.ScrollBars = ScrollBars.Vertical;
             output.Size = new Size(605, 405);
             output.TabIndex = 1;
-            // 
-            // complex
-            // 
-            complex.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            complex.Font = new Font("Microsoft Sans Serif", 6F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            complex.Location = new Point(1243, 553);
-            complex.Name = "complex";
-            complex.Size = new Size(80, 91);
-            complex.TabIndex = 2;
-            complex.Text = "toggle complex counting";
-            complex.UseVisualStyleBackColor = true;
-            complex.Click += complex_Click;
             // 
             // enemy_name
             // 
@@ -203,26 +190,26 @@
             Use_Items.ImageScalingSize = new Size(24, 24);
             Use_Items.Items.AddRange(new ToolStripItem[] { CMS_Use_Self, CMS_Use_Target, CMS_Use_Special });
             Use_Items.Name = "Use_Items";
-            Use_Items.Size = new Size(172, 100);
+            Use_Items.Size = new Size(241, 133);
             // 
             // CMS_Use_Self
             // 
             CMS_Use_Self.Name = "CMS_Use_Self";
-            CMS_Use_Self.Size = new Size(171, 32);
+            CMS_Use_Self.Size = new Size(240, 32);
             CMS_Use_Self.Text = "Use Self";
             CMS_Use_Self.Click += CMS_Use_Self_Click;
             // 
             // CMS_Use_Target
             // 
             CMS_Use_Target.Name = "CMS_Use_Target";
-            CMS_Use_Target.Size = new Size(171, 32);
+            CMS_Use_Target.Size = new Size(240, 32);
             CMS_Use_Target.Text = "Use Enemy";
             CMS_Use_Target.Click += CMS_Use_Target_Click;
             // 
             // CMS_Use_Special
             // 
             CMS_Use_Special.Name = "CMS_Use_Special";
-            CMS_Use_Special.Size = new Size(171, 32);
+            CMS_Use_Special.Size = new Size(240, 32);
             CMS_Use_Special.Text = "Special";
             CMS_Use_Special.Click += CMS_Use_Special_Click;
             // 
@@ -243,7 +230,6 @@
             Controls.Add(Next_Turn);
             Controls.Add(enemy_HP);
             Controls.Add(enemy_name);
-            Controls.Add(complex);
             Controls.Add(output);
             Controls.Add(roll);
             FormBorderStyle = FormBorderStyle.None;
@@ -261,7 +247,6 @@
 
         private System.Windows.Forms.Button roll;
         private System.Windows.Forms.TextBox output;
-        private System.Windows.Forms.Button complex;
         private System.Windows.Forms.TextBox enemy_name;
         private System.Windows.Forms.TextBox enemy_HP;
         private System.Windows.Forms.Button Next_Turn;

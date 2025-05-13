@@ -9,13 +9,13 @@ namespace DnD_Battle.Creatures {
         public int HitDice {  get; set; }
         public int[]? SpellSlots { get; set; }
         public string Name { get; set; }
-        public SpellList[]? Spells { get; set; }
+        public string Tag { get; set; }
 
-        public Classes(string _Name, int _HD, int[]? _SS = null, SpellList[]? spells = null) {
+        public Classes(string _Name, int _HD, int[]? _SS = null, string tag= "") {
             Name = _Name;
             HitDice = _HD;
             SpellSlots = _SS;
-            Spells = spells;
+            Tag = tag;
         }
     }
 }
