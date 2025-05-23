@@ -125,10 +125,14 @@ namespace DnD_Battle.Creatures {
 
         public void Effects_Decay() {
             if(Effects.Count >0){
+                List<Effect> list = new List<Effect>();
                 foreach (Effect E in Effects) {
                     int temp = E.Decay();
                     Attack(E.DMG.Attack(this, E.Is_Magical));
-                    if (temp == 0) Effects.Remove(E);
+                    if (temp == 0) list.Add(E);
+                }
+                foreach (Effect E in list) {
+                    Effects.Remove(E);
                 }
             }
         }

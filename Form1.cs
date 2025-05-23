@@ -82,6 +82,8 @@ namespace DnD_Battle {
             else {
                 Settings.Log += "\r\n" + Test.Name + " misses " + Settings.User.Name;
             }
+            Test.Effects_Decay();
+            Settings.User.Effects_Decay();
             Player_HP.Text = Settings.User.HP_Check();
             output.Text = Settings.Log;
             Settings.Actions = 1;
@@ -175,7 +177,7 @@ namespace DnD_Battle {
             LB_SS.Items.Clear();
             if (temp != null) {
                 if (temp.SpellSlot == 0) {
-                    LB_SS.Items.Add(0);
+                    LB_SS.Items.Add(0.ToString());
                 }
                 else {
                     for (int i = temp.SpellSlot; i <= 10; i++) {
