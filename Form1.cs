@@ -185,7 +185,7 @@ namespace DnD_Battle {
                     LB_SS.Items.Add(0.ToString());
                 }
                 else {
-                    for (int i = temp.SpellSlot; i <= 10; i++) {
+                    for (int i = temp.SpellSlot; i < 10; i++) {
                         LB_SS.Items.Add(i.ToString());
                     }
                 }
