@@ -22,7 +22,7 @@ namespace DnD_Battle {
         }
 
         Creature Test = new Creature("testanimal", new Spellcasting(), 4, 4, 4, 4, 4, 4, 5, 20, 20, new Dice(0, 0, 0, 0, 2, 0, 0));
-
+        public int ExitCode;
         private void Form1_Load(object sender, EventArgs e) {
 
             ReSize(Width, Height);
@@ -68,6 +68,7 @@ namespace DnD_Battle {
 
             if (Test.CurrentHP == 0) {
                 enemy_name.Text = "DEAD";
+                ExitCode = 0;
                 this.Close();
             }
 
@@ -85,6 +86,10 @@ namespace DnD_Battle {
             Test.Effects_Decay();
             Settings.User.Effects_Decay();
             Player_HP.Text = Settings.User.HP_Check();
+            if(Settings.User.CurrentHP == 0) {
+                ExitCode = 1;
+                this.Close();
+            }
             output.Text = Settings.Log;
             Settings.Actions = 1;
             Settings.B_Actions = 1;

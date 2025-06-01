@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -24,8 +25,14 @@ namespace DnD_Battle {
         }
 
         private void Form_FormClosed(object? sender, FormClosedEventArgs e) {
-            MessageBox.Show("you win");
-            this.Close();
+            if (form.ExitCode == 0) {
+                MessageBox.Show("you win");
+                this.Close();
+            }
+            else if (form.ExitCode == 1) {
+                MessageBox.Show("you lose");
+                this.Close();
+            }
         }
 
         private void MainForm_SizeChanged(object sender, EventArgs e) {
